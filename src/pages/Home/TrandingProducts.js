@@ -48,7 +48,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -77,7 +77,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -106,7 +106,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -135,7 +135,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -164,7 +164,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -193,7 +193,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -222,7 +222,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -251,7 +251,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product 22 */}
                     <div className="bg-white group">
@@ -280,7 +280,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -309,7 +309,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -338,7 +338,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                 </div>
                 <div className='text-center py-16'>
