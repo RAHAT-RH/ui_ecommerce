@@ -20,8 +20,8 @@ module.exports = {
         primary: "#7811D4",
         secondary: "#B872F7",
         neutral: "rgba(140, 27, 241, 0.59)",
-        "custom-color": "#6003aa",
-        "body-color": "#F5F5F5"
+        "custom-color": "#F7EFFF",
+        "body-color": "#f5f5f5"
       },
     },
   },

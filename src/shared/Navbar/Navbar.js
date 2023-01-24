@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png';
 import signLogo from '../../assets/logo/signup.png';
 import { RiShoppingCart2Line } from "react-icons/ri";
-const Navbar = () => {
+const Navbar = ({children}) => {
     return (
         <div>
             {/* header  */}
@@ -47,8 +47,7 @@ const Navbar = () => {
                 </div>
             </nav>
             {/* navbarEnd */}
-
-
+            {children}
         </div>
     );
 };
