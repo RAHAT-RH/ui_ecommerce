@@ -22,8 +22,8 @@ const TrandingProducts = () => {
                 {/* gird system */}
                 <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
                     {/* single product */}
-                    <div className="bg-white group">
-                        <div className="relative h-52 bg-cover bg-no-repeat bg-center">
+                    <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
+                        <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
                             <img src={product11} alt="product 1" className="p-3 item-thumbnail w-full h-full object-contain" />
                             <div className="absolute inset-0  flex p-2 justify-between gap-2  transition">
                                 <Link to="/"
@@ -48,7 +48,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">

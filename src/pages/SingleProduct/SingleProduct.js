@@ -7,12 +7,12 @@ import { RiFacebookFill, RiInstagramLine, RiTwitterLine, RiShoppingBagFill   } f
 const SingleProduct = () => {
     return (
         <div>
-            <div className="container my-16 grid lg:grid-cols-2 sm:grid-cols-1 py-16 bg-white gap-6">
+            <div className="container shadow-xl my-16 grid lg:grid-cols-2 sm:grid-cols-1 py-16 bg-white gap-6">
                 <div className="w-full bg-cover bg-no-repeat bg-center">
                     <img src={product1} alt="product" className="item-thumbnail w-full h-full object-contain" />
                 </div>
 
-                <div>
+                <div className=''>
                     <h2 className="text-3xl font-medium uppercase mb-2">Italian L Shape Sofa</h2>
                     <div className="flex items-center mb-4">
                         <div className="flex gap-1 text-sm text-yellow-400">

@@ -4,74 +4,74 @@ import { Link } from 'react-router-dom';
 const Checkout = () => {
     return (
         <div>
-            <div className="container grid lg:grid-cols-1 sm:grid-cols-1 items-start pb-16 pt-4 gap-6">
+            <div className="container grid lg:grid-cols-12 sm:grid-cols-1 items-start pb-16 pt-4 gap-4">
 
-                <div className="col-span-8 border bg-white border-gray-200 p-4 rounded">
+                <div className="lg:col-span-8 sm:col-span-6 bg-white border-gray-200 p-4 rounded">
                     <h3 className="text-lg font-medium capitalize mb-4 text-black">Shopping Details</h3>
                     <div className="space-y-4">
                         {/* <div className="grid  grid-cols-1 gap-4"> */}
 
-                            <div className="p-6 w-full">
+                        <div className="p-6 w-full">
 
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="form-group mb-6">
-                                        <label for="email" className="text-[#0364BE] mb-2 block">Email address</label>
-                                        <input type="email" name="email" id="email"
-                                            className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                            placeholder="youremail.@gmail.com" />
-                                    </div>
-                                    <div className="form-group mb-6">
-                                        <label for="email" className="text-[#0364BE] mb-2 block">Email address</label>
-                                        <input type="email" name="email" id="email"
-                                            className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                            placeholder="youremail.@gmail.com" />
-                                    </div>
-                                </div>
+                            <div className="grid grid-cols-2 gap-4">
                                 <div className="form-group mb-6">
-
+                                    <label for="email" className="text-[#0364BE] mb-2 block">Email address</label>
                                     <input type="email" name="email" id="email"
                                         className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                         placeholder="youremail.@gmail.com" />
                                 </div>
                                 <div className="form-group mb-6">
-
+                                    <label for="email" className="text-[#0364BE] mb-2 block">Email address</label>
                                     <input type="email" name="email" id="email"
                                         className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                         placeholder="youremail.@gmail.com" />
                                 </div>
-
-                                <div className="flex justify-between py-3">
-                                    <h4 className="text-black">Billing Information</h4>
-                                    <span className='text-primary '><input type="checkbox" className="bg-white outline-none" name="same" value='same' id="" /> Same as shipping details</span>
-                                </div>
-
-                                <div className="form-group mb-6">
-
-                                    <input type="email" name="email" id="email"
-                                        classNameName="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                        placeholder="youremail.@gmail.com" />
-                                </div>
-                                <div className="form-group mb-6">
-
-                                    <input type="email" name="email" id="email"
-                                        className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                        placeholder="youremail.@gmail.com" />
-                                </div>
-                                <div className="form-group mb-6">
-
-                                    <input type="email" name="email" id="email"
-                                        className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                        placeholder="youremail.@gmail.com" />
-                                </div>
-
-
                             </div>
+                            <div className="form-group mb-6">
+
+                                <input type="email" name="email" id="email"
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="youremail.@gmail.com" />
+                            </div>
+                            <div className="form-group mb-6">
+
+                                <input type="email" name="email" id="email"
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="youremail.@gmail.com" />
+                            </div>
+
+                            <div className="flex justify-between py-3">
+                                <h4 className="text-black">Billing Information</h4>
+                                <span className='text-primary '><input type="checkbox" className="bg-white outline-none" name="same" value='same' id="" /> Same as shipping details</span>
+                            </div>
+
+                            <div className="form-group mb-6">
+
+                                <input type="email" name="email" id="email"
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="youremail.@gmail.com" />
+                            </div>
+                            <div className="form-group mb-6">
+
+                                <input type="email" name="email" id="email"
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="youremail.@gmail.com" />
+                            </div>
+                            <div className="form-group mb-6">
+
+                                <input type="email" name="email" id="email"
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="youremail.@gmail.com" />
+                            </div>
+
+
+                        </div>
                         {/* </div> */}
 
                     </div>
                 </div>
 
-                <div className="col-span-4 border bg-white w-full border-gray-200 p-4 rounded">
+                <div className="lg:col-span-4 sm:col-span-6 bg-white w-full border-gray-200 p-4 rounded">
                     <h4 className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</h4>
                     <div className="space-y-2">
                         <div className="flex justify-between">
@@ -96,7 +96,7 @@ const Checkout = () => {
                         </div>
                         <div className="flex justify-between">
                             <div>
-                                <h5 className="text-gray-800 font-medium">Casual Shirt</h5>
+                                <h5 className="text-gray-800 font-medium">Casual</h5>
                                 <p className="text-sm text-gray-600">Size: M</p>
                             </div>
                             <p className="text-gray-600">
