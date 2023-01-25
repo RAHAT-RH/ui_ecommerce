@@ -48,7 +48,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -77,7 +77,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -106,7 +106,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -135,7 +135,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -164,7 +164,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -184,7 +184,7 @@ const TrandingProducts = () => {
                             </div>
                         </div>
                         <div className="pt-4 pb-3 px-4">
-                            <Link to="/">
+                            <Link to="/cart">
                                 <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Guyer
                                     Chair</h4>
                             </Link>
@@ -193,7 +193,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -222,7 +222,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -251,7 +251,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product 22 */}
                     <div className="bg-white group">
@@ -280,7 +280,7 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
                     <div className="bg-white group">
@@ -309,12 +309,12 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
                     </div>
                     {/* single product */}
-                    <div className="bg-white group">
-                        <div className="relative h-52 bg-cover bg-no-repeat bg-center">
-                            <img src={product4} alt="product 1" className="p-3 item-thumbnail w-full h-full object-contain" />
+                    <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
+                        <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
+                            <img src={product11} alt="product 1" className="p-3 item-thumbnail w-full h-full object-contain" />
                             <div className="absolute inset-0  flex p-2 justify-between gap-2  transition">
                                 <Link to="/"
                                     className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center  transition"
@@ -338,11 +338,134 @@ const TrandingProducts = () => {
                                 <p className="text-sm text-gray-400 line-through">$55.90</p>
                             </div>
                         </div>
-                        <Link to="/" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition">Add to cart</Link>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
                     </div>
+                    {/* single product */}
+                    {/* single product */}
+                    <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
+                        <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
+                            <img src={product11} alt="product 1" className="p-3 item-thumbnail w-full h-full object-contain" />
+                            <div className="absolute inset-0  flex p-2 justify-between gap-2  transition">
+                                <Link to="/"
+                                    className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center  transition"
+                                    title="view product">
+                                    <RiHeartLine className="group-hover:text-primary transition font-extrabold text-2xl" />
+                                </Link>
+                                <Link to="/"
+                                    className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center transition"
+                                    title="add to wishlist">
+                                    <RiShoppingCartFill className="group-hover:text-primary transition font-extrabold text-2xl" />
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="pt-4 pb-3 px-4">
+                            <Link to="/">
+                                <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Guyer
+                                    Chair</h4>
+                            </Link>
+                            <div className="flex items-baseline mb-1 space-x-2">
+                                <p className="text-xl text-primary font-semibold">$45.00</p>
+                                <p className="text-sm text-gray-400 line-through">$55.90</p>
+                            </div>
+                        </div>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
+                    </div>
+                    {/* single product */}
+                    {/* single product */}
+                    <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
+                        <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
+                            <img src={product11} alt="product 1" className="p-3 item-thumbnail w-full h-full object-contain" />
+                            <div className="absolute inset-0  flex p-2 justify-between gap-2  transition">
+                                <Link to="/"
+                                    className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center  transition"
+                                    title="view product">
+                                    <RiHeartLine className="group-hover:text-primary transition font-extrabold text-2xl" />
+                                </Link>
+                                <Link to="/"
+                                    className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center transition"
+                                    title="add to wishlist">
+                                    <RiShoppingCartFill className="group-hover:text-primary transition font-extrabold text-2xl" />
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="pt-4 pb-3 px-4">
+                            <Link to="/">
+                                <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Guyer
+                                    Chair</h4>
+                            </Link>
+                            <div className="flex items-baseline mb-1 space-x-2">
+                                <p className="text-xl text-primary font-semibold">$45.00</p>
+                                <p className="text-sm text-gray-400 line-through">$55.90</p>
+                            </div>
+                        </div>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
+                    </div>
+                    {/* single product */}
+                    {/* single product */}
+                    <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
+                        <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
+                            <img src={product11} alt="product 1" className="p-3 item-thumbnail w-full h-full object-contain" />
+                            <div className="absolute inset-0  flex p-2 justify-between gap-2  transition">
+                                <Link to="/"
+                                    className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center  transition"
+                                    title="view product">
+                                    <RiHeartLine className="group-hover:text-primary transition font-extrabold text-2xl" />
+                                </Link>
+                                <Link to="/"
+                                    className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center transition"
+                                    title="add to wishlist">
+                                    <RiShoppingCartFill className="group-hover:text-primary transition font-extrabold text-2xl" />
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="pt-4 pb-3 px-4">
+                            <Link to="/">
+                                <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Guyer
+                                    Chair</h4>
+                            </Link>
+                            <div className="flex items-baseline mb-1 space-x-2">
+                                <p className="text-xl text-primary font-semibold">$45.00</p>
+                                <p className="text-sm text-gray-400 line-through">$55.90</p>
+                            </div>
+                        </div>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
+                    </div>
+                    {/* single product */}
+                    {/* single product */}
+                    <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
+                        <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
+                            <img src={product11} alt="product 1" className="p-3 item-thumbnail w-full h-full object-contain" />
+                            <div className="absolute inset-0  flex p-2 justify-between gap-2  transition">
+                                <Link to="/"
+                                    className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center  transition"
+                                    title="view product">
+                                    <RiHeartLine className="group-hover:text-primary transition font-extrabold text-2xl" />
+                                </Link>
+                                <Link to="/"
+                                    className="text-[#e0e0e0] text-lg w-9 h-8 font-bold flex items-center justify-center transition"
+                                    title="add to wishlist">
+                                    <RiShoppingCartFill className="group-hover:text-primary transition font-extrabold text-2xl" />
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="pt-4 pb-3 px-4">
+                            <Link to="/cart">
+                                <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Guyer
+                                    Chair</h4>
+                            </Link>
+                            <div className="flex items-baseline mb-1 space-x-2">
+                                <p className="text-xl text-primary font-semibold">$45.00</p>
+                                <p className="text-sm text-gray-400 line-through">$55.90</p>
+                            </div>
+                        </div>
+                        <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
+                    </div>
+                    {/* single product */}
+                 
+                    
                 </div>
                 <div className='text-center py-16'>
-                    <button type="submit" className="btn btn-primary text-center rounded-none">Show More</button>
+                    <Link to='/shop' className="btn btn-primary text-center rounded-none">Show More</Link>
                 </div>
             </div>
         </div>
