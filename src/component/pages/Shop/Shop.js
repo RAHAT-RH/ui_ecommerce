@@ -11,8 +11,9 @@ import product7 from '../../assets/products/hudi3.png';
 import product8 from '../../assets/products/hudi4.png';
 import product10 from '../../assets/products/hudi5.png';
 import product11 from '../../assets/products/hudi6.png';
-import TrandingProducts from '../Home/TrandingProducts';
 import NewArrival from '../Home/NewArrival';
+import TrandingProducts from '../Home/TrandingProducts';
+
 const Shop = () => {
     return (
         <div>

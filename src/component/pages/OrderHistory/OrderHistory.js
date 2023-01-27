@@ -1,6 +1,7 @@
 import React from 'react';
 import NewArrival from '../Home/NewArrival';
 
+
 const OrderHistory = () => {
     return (
         <div className='py-16'>

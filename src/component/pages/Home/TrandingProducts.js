@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import product1 from '../../assets/products/t-shirt.jpeg';
 import product2 from '../../assets/products/t-shirt2.jpg';
 import product3 from '../../assets/products/t-shirt3.jpg';
-import product4 from '../../assets/products/t-shirt4.png';
+// import product4 from '../../assets/products/t-shirt4.png';
 import product5 from '../../assets/products/hudi1.png';
 import product6 from '../../assets/products/hudi2.png';
 import product7 from '../../assets/products/hudi3.png';
