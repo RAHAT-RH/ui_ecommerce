@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import product1 from '../../assets/products/product1.jpg';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import NewArrival from '../Home/NewArrival';
 import TrandingProducts from '../Home/TrandingProducts';
 import { RiFacebookFill, RiInstagramLine, RiTwitterLine, RiShoppingBagFill } from "react-icons/ri";
+import { Cartcontext } from '../../Context/Context';
+import { toast, Toaster } from 'react-hot-toast';
 const SingleProduct = () => {
+    const Globalstate = useContext(Cartcontext);
+    const dispatch = Globalstate.dispatch;
+    const navigate = useNavigate();
     const [productDetails, setProductDetails] = useState({});
     const {id} = useParams()
     useEffect(() => {
@@ -21,12 +25,18 @@ const SingleProduct = () => {
             })
     }, [id])
     console.log(productDetails)
+
+    const redirectToCart = () => {
+        dispatch({type: 'ADD', payload: productDetails})
+        navigate("/cart")
+        toast.success('Added to cart')
+    }
     const {name, offer_price, price, status} = productDetails;
     return (
         <div>
             <div className="container shadow-xl my-16 grid lg:grid-cols-2 sm:grid-cols-1 py-16 bg-white gap-6">
                 <div className="w-full bg-cover bg-no-repeat bg-center">
-                    <img src={productDetails?.main?.original_url} alt="product" className="item-thumbnail w-full h-full object-contain" />
+                    <img src={productDetails?.main?.original_url} alt="product" className="item-thumbnail mx-auto w-[600px] h-full object-contain" />
                 </div>
 
                 <div className=''>
@@ -129,9 +139,9 @@ const SingleProduct = () => {
                     </div>
 
                     <div className="mt-6 gap-3 border-b border-gray-200 pb-5 pt-5">
-                        <Link to="/checkout" className="rounded-none border border-primary text-white px-8 py-4 text-center font-medium uppercase flex items-center justify-center bg-gradient-to-l from-primary to-[#52a3eb] gap-2 hover:from-[#52a3eb] hover:to-primary transition">
+                        <button onClick={redirectToCart}  className="rounded-none border border-primary text-white px-8 py-4 text-center font-medium uppercase flex items-center justify-center bg-gradient-to-l from-primary to-[#52a3eb] gap-2 hover:from-[#52a3eb] hover:to-primary transition">
                             <RiShoppingBagFill /> Add to cart
-                        </Link>
+                        </button>
                     </div>
 
                     <div className="flex gap-3 mt-4">
@@ -149,6 +159,7 @@ const SingleProduct = () => {
             </div>
             <NewArrival></NewArrival>
             <TrandingProducts></TrandingProducts>
+            <Toaster />
         </div>
     );
 };

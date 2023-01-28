@@ -1,6 +1,7 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
+
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+
 import Cart from './component/pages/Cart/Cart';
 import Checkout from './component/pages/Checkout/Checkout';
 import Footer from './component/pages/Footer/Footer';
@@ -17,10 +18,10 @@ import Navbar from './component/shared/Navbar/Navbar';
 
 function App() {
 
-  const queryClient = new QueryClient()
+
   return (
     <div className="bg-body-color">
-      <QueryClientProvider client={queryClient}>
+   
       <Navbar>
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
@@ -36,7 +37,8 @@ function App() {
         </Routes>
         <Footer></Footer>
       </Navbar>
-      </QueryClientProvider>
+
+     
     </div>
   );
 }

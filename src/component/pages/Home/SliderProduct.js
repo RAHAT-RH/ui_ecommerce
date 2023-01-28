@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RiHeartLine, RiShoppingCartFill } from "react-icons/ri";
-const SliderProduct = ({product}) => {
+import { Cartcontext } from '../../Context/Context';
+import { toast, Toaster } from 'react-hot-toast';
+const SliderProduct = ({ product }) => {
     const navigate = useNavigate()
     const redirectToDetails = (id) => {
         navigate(`/single-product/${product.id}`)
     }
+
+    const Globalstate = useContext(Cartcontext);
+    const dispatch = Globalstate.dispatch;
+  console.log(Globalstate.state)
+
     return (
         <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
             <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
@@ -24,7 +31,7 @@ const SliderProduct = ({product}) => {
                 </div>
             </div>
             <div className="pt-4 pb-3 px-4">
-                <button onClick={()=> redirectToDetails(product.id)} className='link no-underline'>
+                <button onClick={() => redirectToDetails(product.id)} className='link no-underline'>
                     <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">{product?.name}</h4>
                 </button>
                 <div className="flex items-baseline mb-1 space-x-2">
@@ -32,7 +39,9 @@ const SliderProduct = ({product}) => {
                     <p className="text-sm text-gray-400 line-through">${product?.price}</p>
                 </div>
             </div>
-            <Link to="/cart" className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</Link>
+        
+             <button onClick={() => dispatch({type: 'ADD', payload: product})} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</button>
+             <Toaster />
         </div>
     );
 };

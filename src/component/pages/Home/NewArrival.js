@@ -20,7 +20,7 @@ const NewArrival = () => {
                 setProducts(data?.data)
             })
     }, [])
-    console.log(products)
+    // console.log(products)
     return (
         <div>
             <div className="container pb-10 overflow-hidden">
