@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import TokenAuth from '../../../Authentication/TokenAuth/TokenAuth';
-import Navbar from '../../shared/Navbar/Navbar';
 
 
 // interface Props {}
@@ -11,7 +10,7 @@ import Navbar from '../../shared/Navbar/Navbar';
 
 
 const OtpVerify = ({ data }) => {
-    const { token, setToken } = TokenAuth()
+    const { setToken } = TokenAuth()
     const number = localStorage.getItem('phone')
     console.log(number)
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
