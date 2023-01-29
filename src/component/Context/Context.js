@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 
 
 
@@ -6,7 +6,14 @@ export const Cartcontext = createContext()
 
 export const Context = (props) => {
 
+   
+
     const reducer = (state, action) => {
+
+        console.log(state)
+
+       
+
         switch (action.type) {
             case 'ADD':
                 const tempstate = state.filter((product) => action.payload.id === product.id)
@@ -44,9 +51,15 @@ export const Context = (props) => {
                 return state;
         }
     }
+    const cart = localStorage.getItem("cart")
+    const cartStorage = JSON.parse(cart)
 
-    const [state, dispatch] = useReducer(reducer, [])
+    const [state, dispatch] = useReducer(reducer, cartStorage || [])
     const info = { state, dispatch }
+    
+    useEffect(()=> {
+        localStorage.setItem("cart", JSON.stringify(state))
+    }, [state])
     
     return <Cartcontext.Provider value={info}>{props.children}</Cartcontext.Provider>
 }

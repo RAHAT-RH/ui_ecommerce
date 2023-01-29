@@ -43,7 +43,7 @@ const Shop = () => {
                 {/* gird system */}
                 <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
                 {products.map((product) => (
-                       <SliderProduct product={product}></SliderProduct>
+                       <SliderProduct product={product} key={product.id}></SliderProduct>
                     ))}
                 </div>
                 <div className='text-center py-16'>

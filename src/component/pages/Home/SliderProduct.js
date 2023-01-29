@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RiHeartLine, RiShoppingCartFill } from "react-icons/ri";
 import { Cartcontext } from '../../Context/Context';
-import { toast, Toaster } from 'react-hot-toast';
 const SliderProduct = ({ product }) => {
     const navigate = useNavigate()
     const redirectToDetails = (id) => {
@@ -11,7 +10,8 @@ const SliderProduct = ({ product }) => {
 
     const Globalstate = useContext(Cartcontext);
     const dispatch = Globalstate.dispatch;
-  console.log(Globalstate.state)
+
+//   console.log()
 
     return (
         <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
@@ -39,9 +39,7 @@ const SliderProduct = ({ product }) => {
                     <p className="text-sm text-gray-400 line-through">${product?.price}</p>
                 </div>
             </div>
-        
              <button onClick={() => dispatch({type: 'ADD', payload: product})} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</button>
-             <Toaster />
         </div>
     );
 };

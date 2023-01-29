@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const navigate = useNavigate();
-
+    
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const userHandle = async (data) => {
         const user = {
@@ -14,7 +14,7 @@ const SignUp = () => {
             phone: data.phone
         }
         console.log(user)
-
+       const phoneData = data.phone;
         fetch("https://wehatbazar.thecell.tech/api/user-register", {
             method: "POST",
             headers: {
@@ -28,6 +28,7 @@ const SignUp = () => {
                 if (data.success === true) {
                     toast.success(data.message);
                     navigate('/otp-verify')
+                    localStorage.setItem('phone', phoneData)
                 } else {
                     toast.error(data.message);
                     console.log(data)

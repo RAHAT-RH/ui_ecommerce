@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Cartcontext } from '../../Context/Context';
 
 const Checkout = () => {
+
+    const Globalstate = useContext(Cartcontext);
+    const state = Globalstate.state;
+
+    const total = state.reduce((total, product) => {
+        return (total + product.offer_price * product.is_popular)
+    }, 0)
+
+
     return (
         <div>
             <div className="container grid lg:grid-cols-12 sm:grid-cols-1 items-start pb-16 pt-4 gap-4">
 
-                <div className="lg:col-span-8 sm:col-span-6 bg-white border-gray-200 p-4 rounded">
+                <div className="lg:col-span-7 sm:col-span-6 bg-white border-gray-200 p-4 rounded">
                     <h3 className="text-lg font-medium capitalize mb-4 text-black">Shopping Details</h3>
                     <div className="space-y-4">
                         {/* <div className="grid  grid-cols-1 gap-4"> */}
@@ -15,13 +25,13 @@ const Checkout = () => {
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="form-group mb-6">
-                                    <label for="email" className="text-[#0364BE] mb-2 block">Email address</label>
+                                    <label htmlFor="email" className="text-[#0364BE] mb-2 block">Email address</label>
                                     <input type="email" name="email" id="email"
                                         className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                         placeholder="youremail.@gmail.com" />
                                 </div>
                                 <div className="form-group mb-6">
-                                    <label for="email" className="text-[#0364BE] mb-2 block">Email address</label>
+                                    <label htmlFor="email" className="text-[#0364BE] mb-2 block">Email address</label>
                                     <input type="email" name="email" id="email"
                                         className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                         placeholder="youremail.@gmail.com" />
@@ -71,65 +81,45 @@ const Checkout = () => {
                     </div>
                 </div>
 
-                <div className="lg:col-span-4 sm:col-span-6 bg-white w-full border-gray-200 p-4 rounded">
+                <div className="lg:col-span-5 sm:col-span-6 bg-white w-full border-gray-200 p-4 rounded">
                     <h4 className="text-gray-800 text-lg mb-4 font-medium uppercase">order summary</h4>
                     <div className="space-y-2">
-                        <div className="flex justify-between">
-                            <div>
-                                <h5 className="text-gray-800 font-medium">T-Shirt</h5>
-                                <p className="text-sm text-gray-600">Size: M</p>
-                            </div>
-                            <p className="text-gray-600">
-                                x3
-                            </p>
-                            <p className="text-gray-800 font-medium">$320</p>
+                        <div className="overflow-x-auto">
+                            <table className="table w-full">
+
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Qty</th>
+                                        <th>price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {state.map((product, index) => (
+                                        <tr key={index}>
+                                            <th>{index + 1}</th>
+                                            <td>{product.name}</td>
+                                            <td>{product.is_popular}</td>
+                                            <td>{(product.is_popular) * (product.offer_price)}</td>
+                                        </tr>
+                                    ))}
+                                   
+                                </tbody>
+                            </table>
                         </div>
-                        <div className="flex justify-between">
-                            <div>
-                                <h5 className="text-gray-800 font-medium">Huddy</h5>
-                                <p className="text-sm text-gray-600">Size: M</p>
-                            </div>
-                            <p className="text-gray-600">
-                                x3
-                            </p>
-                            <p className="text-gray-800 font-medium">$320</p>
+                        <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercase">
+                            <p>shipping</p>
+                            <p>Free</p>
                         </div>
-                        <div className="flex justify-between">
-                            <div>
-                                <h5 className="text-gray-800 font-medium">Casual</h5>
-                                <p className="text-sm text-gray-600">Size: M</p>
-                            </div>
-                            <p className="text-gray-600">
-                                x3
-                            </p>
-                            <p className="text-gray-800 font-medium">$320</p>
-                        </div>
-                        <div className="flex justify-between">
-                            <div>
-                                <h5 className="text-gray-800 font-medium">Boxer</h5>
-                                <p className="text-sm text-gray-600">Size: M</p>
-                            </div>
-                            <p className="text-gray-600">
-                                x3
-                            </p>
-                            <p className="text-gray-800 font-medium">$320</p>
+
+                        <div className="flex  justify-between text-gray-800 font-medium py-3 uppercase">
+                            <p className="font-semibold">Total</p>
+                            <p>${total}</p>
                         </div>
                     </div>
 
-                    <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercase">
-                        <p>subtotal</p>
-                        <p>$1280</p>
-                    </div>
 
-                    <div className="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercase">
-                        <p>shipping</p>
-                        <p>Free</p>
-                    </div>
-
-                    <div className="flex justify-between text-gray-800 font-medium py-3 uppercase">
-                        <p className="font-semibold">Total</p>
-                        <p>$1280</p>
-                    </div>
 
                     <div className="flex items-center mb-4 mt-2">
                         <input type="checkbox"
@@ -142,8 +132,9 @@ const Checkout = () => {
                         order</Link>
                 </div>
 
+
             </div>
-        </div>
+        </div >
 
 
     );

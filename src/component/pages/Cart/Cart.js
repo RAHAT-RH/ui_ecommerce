@@ -1,18 +1,38 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Cartcontext } from '../../Context/Context';
 import NewArrival from '../Home/NewArrival';
 
-const Cart = () => {
 
+
+const Cart = () => {
     const Globalstate = useContext(Cartcontext);
     const state = Globalstate.state;
     const dispatch = Globalstate.dispatch
     console.log(state)
 
-    const total = state.reduce((total, product)=> {
-        return (total+product.offer_price * product.is_popular)
+    // const [cart, setCart] = useState([])
+    const navigate = useNavigate();
+
+    const reDriectToCheckOut = () => {
+        navigate('/checkout')
+    }
+
+
+
+
+    const total = state.reduce((total, product) => {
+        return (total + product.offer_price * product.is_popular)
     }, 0)
+
+
+
+    console.log(state)
+    const subTotal = state.map((product) => {
+        return (product.is_popular * product.offer_price)
+    })
+
+    console.log(subTotal)
 
     return (
         <div className='py-16'>
@@ -34,7 +54,7 @@ const Cart = () => {
                             </thead>
                             <tbody className='rounded-none'>
                                 {state.map((product) => (
-                                    <tr className='border-none'>
+                                    <tr key={product.id} className='border-none'>
                                         <td className='border-none'>
                                             <div className="flex items-center space-x-3">
                                                 <div className="avatar">
@@ -72,7 +92,7 @@ const Cart = () => {
                                             </div>
                                         </td>
                                         <td className='border-none'>
-                                            {product?.is_popular * product?.offer_price}
+                                            {(product.is_popular) * (product.offer_price)}
                                         </td>
                                         <td className='border-none'><button onClick={() => dispatch({ type: "REMOVE", payload: product })} className='btn btn-xs'>Delete</button></td>
 
@@ -85,42 +105,40 @@ const Cart = () => {
                     {/* 2nd  part start*/}
                     <div className="card lg:max-w-md sm:w-full  bg-base-100 rounded-none mb-20">
                         {state.length > 0 &&
-                        <div className="card-body">
-                            <div className='shadow-md p-5'>
-                                <p className='font-[500] text-normal'> Have a coupon? <Link className='link text-blue-500' to='/'>Click Here to enter your code</Link></p>
-                            </div>
-                            <div className="divider"></div>
-                            <h4 className='font-[500]'>Shipping:</h4>
-                            <div className="form-control items-start">
-                                <label className="label cursor-pointer">
-                                    <input type="radio" name="radio-10" className="radio " />
-                                    <span className="label-text pl-2">Flat Rate</span>
-                                </label>
-                            </div>
-                            <div className="form-control items-start">
-                                <label className="label cursor-pointer">
-                                    <input type="radio" name="radio-10" className="radio " />
-                                    <span className="label-text pl-2">Free Shipping</span>
-                                </label>
-                            </div>
-                            <div className="divider"></div>
-                            <div className='flex justify-between'>
-                                <h5 className='text-[18px] font-[500]'>Total:</h5>
-                                <span className='text-[18px] font-[500]'>{total}</span>
-                            </div>
+                            <div className="card-body">
+                                <div className='shadow-md p-5'>
+                                    <p className='font-[500] text-normal'> Have a coupon? <Link className='link text-blue-500' to='/'>Click Here to enter your code</Link></p>
+                                </div>
+                                <div className="divider"></div>
+                                <h4 className='font-[500]'>Shipping:</h4>
+                                <div className="form-control items-start">
+                                    <label className="label cursor-pointer">
+                                        <input type="radio" name="radio-10" className="radio " />
+                                        <span className="label-text pl-2">Flat Rate</span>
+                                    </label>
+                                </div>
+                                <div className="form-control items-start">
+                                    <label className="label cursor-pointer">
+                                        <input type="radio" name="radio-10" className="radio " />
+                                        <span className="label-text pl-2">Free Shipping</span>
+                                    </label>
+                                </div>
+                                <div className="divider"></div>
+                                <div className='flex justify-between'>
+                                    <h5 className='text-[18px] font-[500]'>Total:</h5>
+                                    <span className='text-[18px] font-[500]'>{total}</span>
+                                </div>
 
-                        </div>
+                            </div>
                         }
                         <div className="block ">
-                            <button className="btn w-full btn-primary bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition rounded-none border-none">Process to Checkout</button>
+                            <button onClick={reDriectToCheckOut} className="btn w-full btn-primary bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition rounded-none border-none">Process to Checkout</button>
                         </div>
                     </div>
 
                     {/* 2nd  part end*/}
                 </div>
-
                 <NewArrival className='py-16'></NewArrival>
-
             </div>
         </div>
     );

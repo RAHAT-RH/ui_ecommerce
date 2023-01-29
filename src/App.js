@@ -1,6 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import ScroolToTop from './Authentication/ScroolToTop';
 
 import Cart from './component/pages/Cart/Cart';
 import Checkout from './component/pages/Checkout/Checkout';
@@ -23,7 +24,9 @@ function App() {
     <div className="bg-body-color">
    
       <Navbar>
+        <ScroolToTop />
         <Routes>
+         
           <Route path='/' element={<Home></Home>}></Route>
           <Route path='/single-product/:id' element={<SingleProduct></SingleProduct>}></Route>
           <Route path='/shop' element={<Shop></Shop>}></Route>
@@ -36,6 +39,7 @@ function App() {
           <Route path='/login' element={<Login></Login>}></Route> 
         </Routes>
         <Footer></Footer>
+      
       </Navbar>
 
      

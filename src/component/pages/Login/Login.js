@@ -3,18 +3,24 @@ import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 
+
 const Login = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
     const login = async (data) => {
         const user = {
             phone: data.phone
         };
-        // console.log(phone)
+        const phoneData = data.phone;
+        console.log(user)
+
+        
 
         fetch("https://wehatbazar.thecell.tech/api/user-login", {
             method: "POST",
             headers: {
+                "X-Requested-With": "XMLHttpRequest",
                 "content-type": "application/json",
             },
             body: JSON.stringify(user),
@@ -25,6 +31,7 @@ const Login = () => {
                 if (data.success === true) {
                     toast.success(data.message);
                         navigate('/otp-verify')
+                        localStorage.setItem('phone', phoneData)
                 } else {
                     toast.error(data.message);
                     console.log(data)
@@ -32,6 +39,7 @@ const Login = () => {
                 reset()
             })
     }
+
 
     return (
         <div>
@@ -46,7 +54,7 @@ const Login = () => {
                         <div className="space-y-2">
                             <div>
                                 <label htmlFor="phone" className="text-[#0364BE] mb-2 block">Your Phone Number</label>
-                                <input type="text" name="phone"
+                                <input type="text" name="phone" 
                                     className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                                     placeholder="0123456789"
                                     {...register("phone", {
@@ -70,12 +78,7 @@ const Login = () => {
                                 />
                                 <span className='text-xs text-red-500 text-left'>{errors.phone?.message}</span>
                             </div>
-                            {/* <div>
-                                <label htmlFor="password" className="text-[#0364BE] mb-2 block">Password</label>
-                                <input type="password" name="password" id="password"
-                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                    placeholder="*******" />
-                            </div> */}
+                            
                         </div>
                         <div className="flex items-center justify-between mt-6">
                             <div className="flex items-center">
@@ -96,6 +99,7 @@ const Login = () => {
                 </div>
             </div>
             <Toaster />
+            
         </div>
     );
 };

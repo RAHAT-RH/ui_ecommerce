@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png';
 import signLogo from '../../assets/logo/signup.png';
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { toast, Toaster } from 'react-hot-toast';
 import { Cartcontext } from '../../Context/Context';
+import { RiUserSettingsLine } from "react-icons/ri";
 const Navbar = ({ children }) => {
 
     const Globalstate = useContext(Cartcontext);
     const state = Globalstate.state;
 
-    // console.log(token)
+    const navigate = useNavigate()
 
     const logOut = () => {
         fetch("https://wehatbazar.thecell.tech/api/logout", {
@@ -27,6 +28,7 @@ const Navbar = ({ children }) => {
                     toast.success("Logout Successfully")
                     localStorage.removeItem('token')
                     console.log(data)
+                    navigate('/')
                 } else {
                     console.log(data)
                 }
@@ -35,16 +37,16 @@ const Navbar = ({ children }) => {
     return (
         <div>
             {/* header  */}
-            <div className='fixed w-full z-10 top-0 left-0'>
+            <div className='sticky top-0 z-10'>
             <header className="py-4  shadow-sm bg-white">
                 <div className="container flex items-center justify-between">
                     <Link to="/">
-                        <img src={logo} className="lg:w-full sm:w-28 xs-w-28" alt="Logo" />
+                        <img src={logo} className="w-28 lg:w-full" alt="Logo" />
                     </Link>
 
                     <div className="flex items-center space-x-6">
                         <Link to='/cart' className="text-center text-gray-700 hover:text-primary transition relative">
-                            <div className="text-2xl">
+                            <div className="text-lg lg:text-2xl">
                                 <RiShoppingCart2Line />
                             </div>
 
@@ -52,7 +54,7 @@ const Navbar = ({ children }) => {
                         </Link>
                         <Link to="/sign-up" className="text-center text-gray-700 hover:text-primary transition relative">
                             <div className="text-2xl">
-                                <img src={signLogo} alt="" />
+                                <img src={signLogo} alt="" className='w-[60px] lg:w-full' />
                             </div>
                         </Link>
                     </div>
@@ -72,18 +74,19 @@ const Navbar = ({ children }) => {
                             <Link to="#" className="text-gray-200 hover:text-white transition">Contact us</Link> */}
                         </div>
                         <div className="dropdown dropdown-end">
-                            <label tabIndex={0} className="link">
-                               Profile
+                            <label tabIndex={0} className="link text-white no-underline flex items-center">
+                               <RiUserSettingsLine/>
+                               <span className='pl-1'>Profile</span>
                             </label>
-                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-4 p-2 shadow bg-base-100 w-52">
                                 <li>
-                                    <a className="justify-between">
-                                        Profile
+                                    <Link to='/new' className="justify-between">
+                                     Profile
                                         <span className="badge">New</span>
-                                    </a>
+                                    </Link>
                                 </li>
-                                <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
+                                <li><Link to='/login'>Login</Link></li>
+                                <li><button onClick={logOut}>Logout</button></li>
                             </ul>
                         </div>
                     </div>
