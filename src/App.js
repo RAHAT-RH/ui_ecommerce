@@ -17,6 +17,7 @@ import SignUp from './component/pages/SignUp/SignUp';
 import SingleProduct from './component/pages/SingleProduct/SingleProduct';
 import Navbar from './component/shared/Navbar/Navbar';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import Profile from './component/pages/Profile/Profile';
 
 function App() {
 
@@ -35,6 +36,9 @@ function App() {
             <Route path='/cart' element={<Cart></Cart>}></Route>
             <Route path='/checkout' element={
               <RequireAuth><Checkout></Checkout></RequireAuth>
+            }></Route>
+            <Route path='/profile' element={
+              <RequireAuth><Profile></Profile></RequireAuth>
             }></Route>
             <Route path='/order-history' element={
               <RequireAuth><OrderHistory></OrderHistory></RequireAuth>
