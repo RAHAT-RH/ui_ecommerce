@@ -1,9 +1,14 @@
+
+
 const getProductData = async () => {
-    const res = await fetch("https://wehatbazar.thecell.tech/api/product?include=media", {
+    const id = localStorage.getItem("id");
+    const id2 = JSON.parse(id)
+    // console.log(JSON.parse(id))
+    const res = await fetch(`https://wehatbazar.thecell.tech/api/user/order/${id2}`, {
         method: "GET",
         headers: {
-            'content-type': "application/json",
             "X-Requested-With": "XMLHttpRequest",
+            'content-type': "application/json",
             'authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })

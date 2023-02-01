@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RiHeartLine, RiShoppingCartFill } from "react-icons/ri";
 import { Cartcontext } from '../../Context/Context';
@@ -8,10 +8,20 @@ const SliderProduct = ({ product }) => {
         navigate(`/single-product/${product.id}`)
     }
 
+    const [added, setAdded] = useState(false)
     const Globalstate = useContext(Cartcontext);
     const dispatch = Globalstate.dispatch;
 
-//   console.log()
+    const handleClick = () => {
+        if (added) {
+            dispatch({ type: 'REMOVE', payload: product });
+        } else {
+            dispatch({ type: 'ADD', payload: product });
+        }
+        setAdded(!added);
+    };
+
+    //   console.log()
 
     return (
         <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
@@ -39,7 +49,10 @@ const SliderProduct = ({ product }) => {
                     <p className="text-sm text-gray-400 line-through">${product?.price}</p>
                 </div>
             </div>
-             <button onClick={() => dispatch({type: 'ADD', payload: product})} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</button>
+            <button onClick={handleClick} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">
+                {added ? 'Remove to Cart' : 'Add to Cart'}
+            </button>
+            {/* <button onClick={() => dispatch({type: 'ADD', payload: product})} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</button> */}
         </div>
     );
 };

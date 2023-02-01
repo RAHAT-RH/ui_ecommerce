@@ -1,12 +1,31 @@
 import React from 'react';
 import { RiMapPinLine } from "react-icons/ri";
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import getProductData from '../../../getProductData/getProductData';
 import product1 from '../../assets/products/hudi1.png'
 import product2 from '../../assets/products/hudi2.png'
 import product3 from '../../assets/products/hudi3.png'
-import product4 from '../../assets/products/hudi4.png'
+
 
 const OrderDetails = () => {
+    // console.log(props.id)
+    const { data, isLoading } = useQuery("history", () => getProductData())
+
+    if (isLoading) {
+        return <h1>Loading...</h1>
+    }
+
+
+    if (isLoading) {
+        return <h1>Loading...</h1>
+    }
+
+    const details = data?.data
+    console.log(details)
+
+
+
     return (
         <div className='py-16'>
             <h1 className='text-center font-bold lg:text-4xl sm:text-2xl pb-8'>Order Details</h1>
@@ -14,7 +33,7 @@ const OrderDetails = () => {
                 <div className='lg:px-4 py-8 bg-white'>
                     <div className="header flex items-center justify-between">
                         <div>
-                            <h2 className='text-2xl font-[500]'>Order No <span className='text-blue-400'>#0001</span></h2>
+                            <h2 className='text-2xl font-[500]'>Order No <span className='text-blue-400'>{details.id}</span></h2>
                             <p className='italic text-sm'>Jan 8, 2023</p>
                             <div className="badge badge-md text-xs rounded-none border-none bg-[#F8951B]">Processing</div>
                         </div>
@@ -44,7 +63,38 @@ const OrderDetails = () => {
                                 </thead>
                                 <tbody className='rounded-none'>
 
-                                    <tr className='border-none'>
+                                    {!Array.isArray(details) && details.order_items ? details.order_items.map((item) => (
+                                        <tr key={item.id} className='border-none'>
+                                            <td className='border-none'>
+                                                <div className="flex items-center space-x-3">
+                                                    <div className="avatar">
+                                                        <div className="mask mask-squircle w-12 h-12">
+                                                            <img src={product1} alt="Avatar Tailwind CSS Component" />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-bold">{item.name}</div>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className='border-none'>
+                                                ${item.price}
+                                            </td>
+                                            <td className='border-none'>
+                                                {item.quantity}
+                                            </td>
+                                            <td className='border-none'>
+                                                $49
+                                            </td>
+                                            <td className='border-none'>
+                                                <div class="badge badge-sm rounded-none bg-[green]">{details.order_status}</div>
+                                            </td>
+
+                                        </tr>
+                                    )) : (<h4 className='text-xl text-red-500'>Sorry No Data Found</h4>)}
+
+                                    {/* <tr className='border-none'>
                                         <td className='border-none'>
                                             <div className="flex items-center space-x-3">
                                                 <div className="avatar">
@@ -53,8 +103,8 @@ const OrderDetails = () => {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div className="font-bold">T-shirt</div>
-                                                    {/* <div className="text-sm opacity-50">United States</div> */}
+                                                    <div className="font-bold"></div>
+                                                    
                                                 </div>
                                             </div>
                                         </td>
@@ -69,85 +119,10 @@ const OrderDetails = () => {
                                         </td>
                                         <td className='border-none'>Delete</td>
 
-                                    </tr>
+                                    </tr> */}
 
-                                    <tr>
-                                        <td className='border-none'>
-                                            <div className="flex items-center  space-x-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle w-12 h-12">
-                                                        <img src={product2} alt="Avatar Tailwind CSS Component" />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="font-bold">Polo Shirt</div>
-                                                    {/* <div className="text-sm opacity-50">China</div> */}
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className='border-none'>
-                                            $80
-                                        </td>
-                                        <td className='border-none'>
-                                            3
-                                        </td>
-                                        <td className='border-none'>
-                                            $85
-                                        </td>
-                                        <td>Delete</td>
-                                    </tr>
 
-                                    <tr>
-                                        <td className='border-none'>
-                                            <div className="flex items-center  space-x-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle w-12 h-12">
-                                                        <img src={product3} alt="Avatar Tailwind CSS Component" />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="font-bold">Polo Shirt</div>
-                                                    {/* <div className="text-sm opacity-50">China</div> */}
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className='border-none'>
-                                            $80
-                                        </td>
-                                        <td className='border-none'>
-                                           2
-                                        </td>
-                                        <td className='border-none'>
-                                            $85
-                                        </td>
-                                        <td className='border-none'>Delete</td>
-                                    </tr>
 
-                                    <tr>
-                                        <td className='border-none'>
-                                            <div className="flex items-center  space-x-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle w-12 h-12">
-                                                        <img src={product4} alt="Avatar Tailwind CSS Component" />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="font-bold">Polo Shirt</div>
-                                                    {/* <div className="text-sm opacity-50">China</div> */}
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className='border-none'>
-                                            $80
-                                        </td>
-                                        <td className='border-none'>
-                                            2
-                                        </td>
-                                        <td className='border-none'>
-                                            $85
-                                        </td>
-                                        <td className='border-none'>Delete</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -164,7 +139,7 @@ const OrderDetails = () => {
                                 <div className='divide-y divide-slate-200'>
                                     <div className="flex items-center py-4 justify-between">
                                         <p>Sub Total</p>
-                                        <p>$66.00</p>
+                                        <p>${details.total}.00</p>
                                     </div>
                                     <div className="flex items-center py-4 justify-between">
                                         <p>Shipping</p>
@@ -172,7 +147,7 @@ const OrderDetails = () => {
                                     </div>
                                     <div className="flex items-center py-4 justify-between">
                                         <p className='font-bold'>Paid Total</p>
-                                        <p className='font-bold'>$$66.00</p>
+                                        <p className='font-bold'>${details?.total}</p>
                                     </div>
                                 </div>
 

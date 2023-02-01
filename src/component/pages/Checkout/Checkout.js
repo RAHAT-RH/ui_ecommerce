@@ -1,15 +1,68 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { toast, Toaster } from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import { Cartcontext } from '../../Context/Context';
-
+import swal from 'sweetalert';
 const Checkout = () => {
-
+    const navigate = useNavigate();
     const Globalstate = useContext(Cartcontext);
     const state = Globalstate.state;
 
     const total = state.reduce((total, product) => {
-        return (total + product.offer_price * product.is_popular)
+        return (total + product.offer_price * (product.is_popular + 1))
     }, 0)
+
+    // console.log("cart: ", state)
+
+    // const data = state.map(())
+
+    const placeOrder = () => {
+
+        const order = {
+            shop_id: 5,
+            products: state.map(item => ({ id: item.id, quantity: (item.is_popular + 1) }))
+        }
+
+        fetch("https://wehatbazar.thecell.tech/api/user/order", {
+            method: "POST",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "content-type": "application/json",
+                "authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(order),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log(data)
+                if (data.success === true) {
+                    swal({
+                        title: "Successfully Order!",
+                        text: "Thank you for your shopping",
+                        icon: "success",
+                        button: {
+                            text: "Continue Shopping",
+                            value: true,
+                            visible: true,
+                            className: "",
+                            closeModal: true
+                        }
+                    }).then((value) => {
+                        if (value) {
+                            navigate('/')
+                        }
+                    });
+
+
+                    localStorage.removeItem('phone')
+                } else {
+                    toast.error(data.message);
+
+                }
+            })
+
+        // console.log(order)
+    }
 
 
     return (
@@ -100,11 +153,11 @@ const Checkout = () => {
                                         <tr key={index}>
                                             <th>{index + 1}</th>
                                             <td>{product.name}</td>
-                                            <td>{product.is_popular}</td>
-                                            <td>{(product.is_popular) * (product.offer_price)}</td>
+                                            <td>{(product.is_popular + 1)}</td>
+                                            <td>{(product.is_popular + 1) * (product.offer_price)}</td>
                                         </tr>
                                     ))}
-                                   
+
                                 </tbody>
                             </table>
                         </div>
@@ -127,13 +180,14 @@ const Checkout = () => {
                         <label className="text-gray-600 ml-3 cursor-pointer text-sm">I agree to the <Link to="/" className="text-primary">terms & conditions</Link></label>
                     </div>
 
-                    <Link to=""
+                    <button onClick={placeOrder}
                         className="block w-full py-3 px-4 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary transition font-medium">Place
-                        order</Link>
+                        order</button>
                 </div>
 
 
             </div>
+            <Toaster />
         </div >
 
 

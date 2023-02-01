@@ -10,7 +10,7 @@ export const Context = (props) => {
 
     const reducer = (state, action) => {
 
-        console.log(state)
+        // console.log(state)
 
        
 
@@ -26,7 +26,7 @@ export const Context = (props) => {
             case 'INCREASE':
                 const tempstate1 = state.map((product) => {
                     if (product.id === action.payload.id) {
-                        return { ...product, is_popular: product.is_popular + 1 };
+                        return { ...product, is_popular: (product.is_popular) + 1 };
                     } else {
                         return product
                     }
@@ -36,7 +36,7 @@ export const Context = (props) => {
             case 'DECREASE':
                 const tempstate2 = state.map((product) => {
                     if (product.id === action.payload.id) {
-                        return { ...product, is_popular: product.is_popular - 1 };
+                        return { ...product, is_popular: (product.is_popular) - 1 };
                     } else {
                         return product
                     }

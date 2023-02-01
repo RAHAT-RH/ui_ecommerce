@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Cartcontext } from '../../Context/Context';
 import NewArrival from '../Home/NewArrival';
-
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 
 const Cart = () => {
     const Globalstate = useContext(Cartcontext);
     const state = Globalstate.state;
     const dispatch = Globalstate.dispatch
-    console.log(state)
+    // console.log(state)
 
     // const [cart, setCart] = useState([])
     const navigate = useNavigate();
@@ -22,17 +22,17 @@ const Cart = () => {
 
 
     const total = state.reduce((total, product) => {
-        return (total + product.offer_price * product.is_popular)
+        return (total + product.offer_price * (product.is_popular + 1))
     }, 0)
 
 
 
-    console.log(state)
-    const subTotal = state.map((product) => {
-        return (product.is_popular * product.offer_price)
-    })
+    // console.log(state)
+    // const subTotal = state.map((product) => {
+    //     return ((product.is_popular + 1) * product.offer_price)
+    // })
 
-    console.log(subTotal)
+    // console.log(subTotal)
 
     return (
         <div className='py-16'>
@@ -75,7 +75,7 @@ const Cart = () => {
                                             <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
                                                 <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
                                                     onClick={() => {
-                                                        if (product.is_popular > 1) {
+                                                        if ((product.is_popular + 1) > 1) {
                                                             dispatch({ type: 'DECREASE', payload: product });
                                                         } else {
                                                             dispatch({ type: "REMOVE", payload: product });
@@ -83,7 +83,7 @@ const Cart = () => {
                                                     }}>
                                                     -
                                                 </div>
-                                                <p className="h-8 w-8 text-base flex items-center border-0 outline-none justify-center bg-white p-2">{product.is_popular}</p>
+                                                <p className="h-8 w-8 text-base flex items-center border-0 outline-none justify-center bg-white p-2">{(product.is_popular + 1)}</p>
 
                                                 <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
                                                     onClick={() => dispatch({ type: 'INCREASE', payload: product })} >
@@ -92,9 +92,9 @@ const Cart = () => {
                                             </div>
                                         </td>
                                         <td className='border-none'>
-                                            {(product.is_popular) * (product.offer_price)}
+                                            {(product.is_popular + 1) * (product.offer_price)}
                                         </td>
-                                        <td className='border-none'><button onClick={() => dispatch({ type: "REMOVE", payload: product })} className='btn btn-xs'>Delete</button></td>
+                                        <td className='border-none'><button onClick={() => dispatch({ type: "REMOVE", payload: product })} className=' outline-none border-none bg-white btn-sm'><RiDeleteBin6Line className='text-2xl text-red-600 hover:text-red-700'/></button></td>
 
                                     </tr>
                                 ))}

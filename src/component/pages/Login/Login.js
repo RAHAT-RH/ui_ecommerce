@@ -13,7 +13,7 @@ const Login = () => {
             phone: data.phone
         };
         const phoneData = data.phone;
-        console.log(user)
+        // console.log(user)
 
         
 
@@ -34,7 +34,7 @@ const Login = () => {
                         localStorage.setItem('phone', phoneData)
                 } else {
                     toast.error(data.message);
-                    console.log(data)
+                    // console.log(data)
                 }
                 reset()
             })

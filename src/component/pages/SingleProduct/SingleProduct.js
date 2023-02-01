@@ -5,12 +5,14 @@ import TrandingProducts from '../Home/TrandingProducts';
 import { RiFacebookFill, RiInstagramLine, RiTwitterLine, RiShoppingBagFill } from "react-icons/ri";
 import { Cartcontext } from '../../Context/Context';
 import { toast, Toaster } from 'react-hot-toast';
+import ReactImageMagnify from 'react-image-magnify';
+import './custom.css'
 const SingleProduct = () => {
     const Globalstate = useContext(Cartcontext);
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
     const [productDetails, setProductDetails] = useState({});
-    const {id} = useParams()
+    const { id } = useParams()
     useEffect(() => {
         fetch(`https://wehatbazar.thecell.tech/api/product/${id}?include=category`, {
             method: "GET",
@@ -24,19 +26,39 @@ const SingleProduct = () => {
                 setProductDetails(data?.data)
             })
     }, [id])
-    console.log(productDetails)
+    // console.log(productDetails)
+
 
     const redirectToCart = () => {
-        dispatch({type: 'ADD', payload: productDetails})
+        dispatch({ type: 'ADD', payload: productDetails })
         navigate("/cart")
         toast.success('Added to cart')
     }
-    const {name, offer_price, price, status} = productDetails;
+
+
+    const { name, offer_price, price, status, is_popular } = productDetails;
     return (
         <div>
             <div className="container shadow-xl my-16 grid lg:grid-cols-2 sm:grid-cols-1 py-16 bg-white gap-6">
                 <div className="w-full bg-cover bg-no-repeat bg-center">
-                    <img src={productDetails?.main?.original_url} alt="product" className="item-thumbnail mx-auto w-[600px] h-full object-contain" />
+
+                    <img src={productDetails?.main?.original_url} alt="product" className="block lg:hidden item-thumbnail mx-auto w-[600px] h-full object-contain" />
+
+                    <ReactImageMagnify className='hidden lg:block' {...{
+                        smallImage: {
+                            alt: 'Wristwatch by Ted Baker London',
+                            isFluidWidth: true,
+                            src: productDetails?.main?.original_url,
+
+                            sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
+                        },
+                        largeImage: {
+                            src: productDetails?.main?.original_url,
+                            width: 950,
+                            height: 950
+                        },
+
+                    }} />
                 </div>
 
                 <div className=''>
@@ -129,17 +151,9 @@ const SingleProduct = () => {
                         </div>
                     </div>
 
-                    <div className="mt-4">
-                        <h3 className="text-sm text-gray-800 uppercase mb-1">Quantity</h3>
-                        <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-                            <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                            <input type='text' className="h-8 w-8 text-base flex items-center border-0 outline-none justify-center bg-white p-2" />
-                            <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
-                        </div>
-                    </div>
 
-                    <div className="mt-6 gap-3 border-b border-gray-200 pb-5 pt-5">
-                        <button onClick={redirectToCart}  className="rounded-none border border-primary text-white px-8 py-4 text-center font-medium uppercase flex items-center justify-center bg-gradient-to-l from-primary to-[#52a3eb] gap-2 hover:from-[#52a3eb] hover:to-primary transition">
+                    <div className="mt-6 gap-3 border-b border-gray-200 pb-5 pt-12">
+                        <button onClick={redirectToCart} className="rounded-none border border-primary text-white px-8 py-4 text-center font-medium uppercase flex items-center justify-center bg-gradient-to-l from-primary to-[#52a3eb] gap-2 hover:from-[#52a3eb] hover:to-primary transition">
                             <RiShoppingBagFill /> Add to cart
                         </button>
                     </div>

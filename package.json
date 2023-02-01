@@ -14,9 +14,11 @@
     "react-hook-form": "^7.42.1",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
+    "react-image-magnify": "^2.7.4",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
+    "sweetalert": "^2.1.2",
     "swiper": "^8.4.6",
     "web-vitals": "^2.1.4"
   },

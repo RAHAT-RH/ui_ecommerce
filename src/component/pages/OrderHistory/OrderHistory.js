@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import getProductData from '../../../getProductData/getProductData';
 import NewArrival from '../Home/NewArrival';
+import OrderDetails from '../OrderDetails/OrderDetails';
 
 
 const OrderHistory = () => {
+    // const [history, setHistory] = useState([]);
+    const navigate = useNavigate();
+
+
+    const { data, isLoading } = useQuery("history", () => fetch('https://wehatbazar.thecell.tech/api/user/order', {
+        method: "GET",
+        headers: {
+            'content-type': "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            'authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then((res) => res.json()
+    )
+    )
+
+    if (isLoading) {
+        return <h1>Loading...</h1>
+    }
+
+    const history = data.data
+
     return (
         <div className='py-16'>
             <h1 className='text-center font-bold lg:text-4xl sm:text-2xl pb-8'>Order History</h1>
@@ -23,65 +48,29 @@ const OrderHistory = () => {
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td>#001</td>
-                                <td>Jan 8, 2023</td>
-                                <td>Mirpur, Dhaka</td>
-                                <td>
-                                    <span className="badge bg-[#C798EC] rounded-none border-none">Processing</span>
-                                </td>
-                                <td>
-                                    $18.00
-                                </td>
-                                <td>
-                                    <button className="btn btn-sm bg-primary rounded-none">View</button>
-                                </td>
-                            </tr>
+                            
+                                {Array.isArray(history) ? history.map((historyItem) => (
+                                    <tr key={historyItem?.id}>
+                                        <td>{historyItem?.id}</td>
+                                        <td>{new Date(historyItem?.created_at).toLocaleDateString()}</td>
+                                        <td>Mirpur, Dhaka</td>
+                                        <td>
+                                            <span className="badge bg-[#FB767D] rounded-none border-none">{historyItem?.order_status}</span>
+                                        </td>
+                                        <td>
+                                            ${historyItem?.total}
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() => {
+                                                    navigate(`/order-details/${historyItem?.id}`);
+                                                    localStorage.setItem("id", historyItem?.id)
+                                                   
+                                                }} className="btn btn-sm bg-primary rounded-none">View</button>
+                                        </td>
 
-                            <tr>
-                                <td>#001</td>
-                                <td>Jan 8, 2023</td>
-                                <td>Mirpur, Dhaka</td>
-                                <td>
-                                    <span className="badge bg-[#FB767D] rounded-none border-none">Cancelled</span>
-                                </td>
-                                <td>
-                                    $18.00
-                                </td>
-                                <td>
-                                    <button className="btn btn-sm bg-primary rounded-none">View</button>
-                                </td>
-                            </tr>
-
-                            <tr className='rounded-none'>
-                                <td>#001</td>
-                                <td>Jan 8, 2023</td>
-                                <td>Mirpur, Dhaka</td>
-                                <td>
-                                    <span className="badge bg-[#F8B66F] rounded-none border-none">Pending</span>
-                                </td>
-                                <td>
-                                    $18.00
-                                </td>
-                                <td>
-                                    <button className="btn btn-sm bg-primary rounded-none">View</button>
-                                </td>
-                            </tr>
-
-                            <tr className='rounded-none'>
-                                <td className='rounded-none'>#001</td>
-                                <td className='rounded-none'>Jan 8, 2023</td>
-                                <td className='rounded-none'>Mirpur, Dhaka</td>
-                                <td className='rounded-none'>
-                                    <span className="badge bg-[#80D6A8] rounded-none border-none">Delivered</span>
-                                </td>
-                                <td className='rounded-none'>
-                                    $18.00
-                                </td>
-                                <td className='rounded-none'>
-                                    <button className="btn btn-sm bg-primary rounded-none">View</button>
-                                </td>
-                            </tr>
+                                    </tr>
+                                )) : null}
                         </tbody>
                     </table>
                 </div>
@@ -89,6 +78,8 @@ const OrderHistory = () => {
             </div>
 
             <NewArrival></NewArrival>
+
+
         </div>
     );
 };

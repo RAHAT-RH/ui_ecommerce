@@ -12,7 +12,7 @@ import TokenAuth from '../../../Authentication/TokenAuth/TokenAuth';
 const OtpVerify = ({ data }) => {
     const { setToken } = TokenAuth()
     const number = localStorage.getItem('phone')
-    console.log(number)
+    // console.log(number)
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const verifyOtp = async (data) => {
         const user = {
@@ -30,7 +30,7 @@ const OtpVerify = ({ data }) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
+                // console.log(data)
                 if (data.success === true) {
                     toast.success("Successfully Login");
                     setToken(data.data.access_token)
