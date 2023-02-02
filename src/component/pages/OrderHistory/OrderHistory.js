@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import getProductData from '../../../getProductData/getProductData';
+
 import NewArrival from '../Home/NewArrival';
-import OrderDetails from '../OrderDetails/OrderDetails';
+
 
 
 const OrderHistory = () => {

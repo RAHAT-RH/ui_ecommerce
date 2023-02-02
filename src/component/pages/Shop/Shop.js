@@ -30,7 +30,7 @@ const Shop = () => {
                 </div>
                 {/* gird system */}
                 <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
-                {products.map((product) => (
+                {products.sort(()=> Math.random() - 0.7).map((product) => (
                        <SliderProduct product={product} key={product.id}></SliderProduct>
                     ))}
                 </div>

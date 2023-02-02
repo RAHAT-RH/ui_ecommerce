@@ -38,7 +38,7 @@ const Navbar = ({ children }) => {
     return (
         <div>
             {/* header  */}
-            <div className='sticky top-0 z-10'>
+            <div className='sticky top-0 z-20'>
                 <header className="py-4  shadow-sm bg-white">
                     <div className="container flex items-center justify-between">
                         <Link to="/">

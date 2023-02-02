@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RiHeartLine, RiShoppingCartFill } from "react-icons/ri";
 import { Cartcontext } from '../../Context/Context';
+import { toast, Toaster } from 'react-hot-toast';
 const SliderProduct = ({ product }) => {
     const navigate = useNavigate()
     const redirectToDetails = (id) => {
@@ -13,15 +14,20 @@ const SliderProduct = ({ product }) => {
     const dispatch = Globalstate.dispatch;
 
     const handleClick = () => {
+
         if (added) {
             dispatch({ type: 'REMOVE', payload: product });
+            toast("Remove to cart")
+      
         } else {
             dispatch({ type: 'ADD', payload: product });
+            toast("Added to cart")
+   
         }
         setAdded(!added);
+
     };
 
-    //   console.log()
 
     return (
         <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
@@ -52,6 +58,7 @@ const SliderProduct = ({ product }) => {
             <button onClick={handleClick} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">
                 {added ? 'Remove to Cart' : 'Add to Cart'}
             </button>
+            <Toaster></Toaster>
             {/* <button onClick={() => dispatch({type: 'ADD', payload: product})} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</button> */}
         </div>
     );

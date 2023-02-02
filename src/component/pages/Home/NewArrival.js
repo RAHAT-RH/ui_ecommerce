@@ -57,7 +57,7 @@ const NewArrival = () => {
                     className="mySwiper"
                     grabCursor={true}
                 >
-                    {products.map((product) => (
+                    {products.sort(()=> Math.random() - 0.5).map((product) => (
                         <SwiperSlide key={product.id} className="pb-16 mr-2">
                             <SliderProduct product={product}></SliderProduct>
                         </SwiperSlide>

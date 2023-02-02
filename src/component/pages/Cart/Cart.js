@@ -44,8 +44,8 @@ const Cart = () => {
 
                         <table className="table  w-full rounded-none">
                             <thead className=''>
-                                <tr className=''>
-                                    <th className='bg-blue-400 text-white rounded-none'>Products</th>
+                                <tr className='z-0'>
+                                    <th className='bg-blue-400 text-white rounded-none z-0'>Products</th>
                                     <th className='bg-blue-400 text-white rounded-none'>Price</th>
                                     <th className='bg-blue-400 text-white rounded-none'>Qty</th>
                                     <th className='bg-blue-400 text-white rounded-none'>SubTotal</th>

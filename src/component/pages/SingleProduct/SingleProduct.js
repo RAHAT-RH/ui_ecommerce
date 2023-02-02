@@ -54,8 +54,8 @@ const SingleProduct = () => {
                         },
                         largeImage: {
                             src: productDetails?.main?.original_url,
-                            width: 950,
-                            height: 950
+                            width: 1200,
+                            height: 1200
                         },
 
                     }} />
