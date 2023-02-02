@@ -36,7 +36,7 @@ const SingleProduct = () => {
     }
 
 
-    const { name, offer_price, price, status, is_popular } = productDetails;
+    const { name, offer_price, price, status } = productDetails;
     return (
         <div>
             <div className="container shadow-xl my-16 grid lg:grid-cols-2 sm:grid-cols-1 py-16 bg-white gap-6">

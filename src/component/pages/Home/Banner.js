@@ -10,9 +10,6 @@ const Banner = () => {
                     <h1 className="text-2xl lg:text-5xl text- uppercase text-[#1E375A] font-medium mb-4">
                         Summer Sale <br />on Selected Items
                     </h1>
-                    {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam <br />
-                        accusantium perspiciatis, sapiente
-                        magni eos dolorum ex quos dolores odio</p> */}
                     <div className="mt-8 lg:mt-12">
                         <Link to="/" className="bg-primary border border-primary text-white px-4 py-3 lg:px-8 lg:py-4
                     rounded-none hover:bg-[#B872F7] hover:text-white text-xl transition font-normal">Shop Now</Link>

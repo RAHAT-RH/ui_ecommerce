@@ -42,7 +42,7 @@ const TrandingProducts = () => {
                 <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
                     {/* single product */}
 
-                    {products.map((product) => (
+                    {products.sort(()=> Math.random() - 0.7).map((product) => (
                         <SliderProduct product = {product} key={product.id}></SliderProduct>
                         // <div key={product.id} className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
                         //     <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
