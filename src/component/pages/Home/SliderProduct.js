@@ -1,32 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { RiHeartLine, RiShoppingCartFill } from "react-icons/ri";
-import { Cartcontext } from '../../Context/Context';
-import { toast, Toaster } from 'react-hot-toast';
+import { useProducts } from '../../Context/ProductProvider';
+import { actionTypes } from '../../Context/actionTypes';
+
 const SliderProduct = ({ product }) => {
     const navigate = useNavigate()
-    const redirectToDetails = (id) => {
+    const redirectToDetails = () => {
         navigate(`/single-product/${product.id}`)
     }
 
-    const [added, setAdded] = useState(false)
-    const Globalstate = useContext(Cartcontext);
-    const dispatch = Globalstate.dispatch;
-
-    const handleClick = () => {
-
-        if (added) {
-            dispatch({ type: 'REMOVE', payload: product });
-            toast("Remove to cart")
-      
-        } else {
-            dispatch({ type: 'ADD', payload: product });
-            toast("Added to cart")
-   
-        }
-        setAdded(!added);
-
-    };
+    const { state: { cart }, dispatch } = useProducts();
 
 
     return (
@@ -55,13 +39,24 @@ const SliderProduct = ({ product }) => {
                     <p className="text-sm text-gray-400 line-through">${product?.price}</p>
                 </div>
             </div>
-            <button onClick={handleClick} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">
-                {added ? 'Remove to Cart' : 'Add to Cart'}
-            </button>
-            <Toaster></Toaster>
-            {/* <button onClick={() => dispatch({type: 'ADD', payload: product})} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">Add to cart</button> */}
+
+            {
+                cart.some(cartProduct => cartProduct.id === product.id) ? (
+                    <button onClick={() => dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: product })} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-red-500 to-[#52a3eb] hover:from-[red] hover:to-primary ease-in-out delay-150 duration-300 transition">
+                        Remove From Cart
+                    </button>
+                ) : (
+                    <button onClick={() => dispatch({ type: actionTypes.ADD_TO_CARD, payload: product })} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">
+                        Add To Cart
+                    </button>
+                )
+            }
+
         </div>
     );
 };
 
 export default SliderProduct;
+
+// onClick={handleClick}
+//  {/* {added ? 'Remove to Cart' : 'Add to Cart'} */}

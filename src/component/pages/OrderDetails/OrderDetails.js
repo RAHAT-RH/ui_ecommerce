@@ -3,9 +3,8 @@ import { RiMapPinLine } from "react-icons/ri";
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import getProductData from '../../../getProductData/getProductData';
-import product1 from '../../assets/products/hudi1.png'
-import product2 from '../../assets/products/hudi2.png'
-import product3 from '../../assets/products/hudi3.png'
+import Loading from '../Loading/Loading';
+
 
 
 const OrderDetails = () => {
@@ -13,16 +12,11 @@ const OrderDetails = () => {
     const { data, isLoading } = useQuery("history", () => getProductData())
 
     if (isLoading) {
-        return <h1>Loading...</h1>
-    }
-
-
-    if (isLoading) {
-        return <h1>Loading...</h1>
+        return <Loading></Loading>
     }
 
     const details = data?.data
-    console.log(details)
+    // console.log(details)
 
 
 
@@ -67,11 +61,6 @@ const OrderDetails = () => {
                                         <tr key={item.id} className='border-none'>
                                             <td className='border-none'>
                                                 <div className="flex items-center space-x-3">
-                                                    <div className="avatar">
-                                                        <div className="mask mask-squircle w-12 h-12">
-                                                            <img src={product1} alt="Avatar Tailwind CSS Component" />
-                                                        </div>
-                                                    </div>
                                                     <div>
                                                         <div className="font-bold">{item.name}</div>
 

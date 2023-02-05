@@ -1,18 +1,45 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png';
 import signLogo from '../../assets/logo/signup.png';
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { toast, Toaster } from 'react-hot-toast';
-import { Cartcontext } from '../../Context/Context';
 import { RiUserSettingsLine } from "react-icons/ri";
+import { useProducts } from '../../Context/ProductProvider';
+import Loading from '../../pages/Loading/Loading';
 
 const Navbar = ({ children }) => {
-    const token = localStorage.getItem('token');
-    const Globalstate = useContext(Cartcontext);
-    const state = Globalstate.state;
-
     const navigate = useNavigate()
+    const token = localStorage.getItem('token');
+
+    const { state: { cart }, loading, error } = useProducts();
+    
+    // console.log("ki ase:", cart)
+    let content;
+
+    if (loading) {
+        return <Loading></Loading>
+    }
+    if (error) {
+        content = <h1>Something went wrong</h1>
+    }
+
+    // if (!loading && !error && products.length === 0) {
+    //     content = <p>Nothing to show, Product list is empty</p>
+    // }
+
+    // if (!loading && !error && products.length) {
+    //     content = products.sort(() => Math.random() - 0.6).map((product) => (
+    //         <SliderProduct product={product}></SliderProduct>
+    //     ))
+    // }
+
+
+    
+    
+ 
+
+    
 
     const logOut = () => {
         fetch("https://wehatbazar.thecell.tech/api/logout", {
@@ -51,7 +78,7 @@ const Navbar = ({ children }) => {
                                     <RiShoppingCart2Line />
                                 </div>
 
-                                <div className="absolute left-4 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">{state.length}</div>
+                                <div className="absolute left-4 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">{cart.length} {content}</div>
                             </Link>
                             <Link to="/sign-up" className="text-center text-gray-700 hover:text-primary transition relative">
                                 <div className="text-2xl">

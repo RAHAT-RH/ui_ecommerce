@@ -10,7 +10,7 @@ export const Context = (props) => {
 
     const reducer = (state, action) => {
 
-        // console.log(state)
+  
 
        
 

@@ -1,26 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
-import { Cartcontext } from '../../Context/Context';
 import swal from 'sweetalert';
+import { useProducts } from '../../Context/ProductProvider';
 const Checkout = () => {
     const navigate = useNavigate();
-    const Globalstate = useContext(Cartcontext);
-    const state = Globalstate.state;
-
-    const total = state.reduce((total, product) => {
-        return (total + product.offer_price * (product.is_popular + 1))
+    const { state: { cart } } = useProducts();
+    const total = cart.reduce((total, product) => {
+        return (total + product.offer_price * (product.quantity))
     }, 0)
 
     // console.log("cart: ", state)
-
     // const data = state.map(())
 
     const placeOrder = () => {
 
         const order = {
             shop_id: 5,
-            products: state.map(item => ({ id: item.id, quantity: (item.is_popular + 1) }))
+            products: cart.map(item => ({ id: item.id, quantity: item.quantity }))
         }
 
         fetch("https://wehatbazar.thecell.tech/api/user/order", {
@@ -34,7 +31,6 @@ const Checkout = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                // console.log(data)
                 if (data.success === true) {
                     swal({
                         title: "Successfully Order!",
@@ -60,8 +56,6 @@ const Checkout = () => {
 
                 }
             })
-
-        // console.log(order)
     }
 
 
@@ -149,12 +143,12 @@ const Checkout = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {state.map((product, index) => (
+                                    {cart.map((product, index) => (
                                         <tr key={index}>
                                             <th>{index + 1}</th>
                                             <td>{product.name}</td>
-                                            <td>{(product.is_popular + 1)}</td>
-                                            <td>{(product.is_popular + 1) * (product.offer_price)}</td>
+                                            <td>{product.quantity}</td>
+                                            <td>{product.quantity * product.offer_price}</td>
                                         </tr>
                                     ))}
 

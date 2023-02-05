@@ -1,26 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
 // import "swiper/css/pagination";
 import SliderProduct from './SliderProduct';
+import { useProducts } from '../../Context/ProductProvider';
+import Loading from '../Loading/Loading';
 
 const NewArrival = () => {
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        fetch("https://wehatbazar.thecell.tech/api/product?include=media", {
-            method: "GET",
-            headers: {
-                'content-type': "application/json",
-                'authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then(res => res.json())
-            .then(data => {
-                // console.log(data.data)
-                setProducts(data?.data)
-            })
-    }, [])
-    // console.log(products)
+
+    const { state: { products, loading, error } } = useProducts();
+
+    let content;
+
+    if (loading) {
+        content = <Loading></Loading>
+    }
+    if (error) {
+        content = <h1>Something went wrong</h1>
+    }
+
+    if (!loading && !error && products.length === 0) {
+        content = <p>Nothing to show, Product list is empty</p>
+    }
+
+    if (!loading && !error && products.length) {
+        content = products.sort(() => Math.random() - 0.7).map((product) => (
+            <SwiperSlide key={product.id} className="pb-16 mr-2">
+                <SliderProduct key={product.id} product={product}></SliderProduct>
+            </SwiperSlide>
+        ))
+    }
+
     return (
         <div>
             <div className="container pb-10 overflow-hidden">
@@ -57,19 +68,9 @@ const NewArrival = () => {
                     className="mySwiper"
                     grabCursor={true}
                 >
-                    {products.sort(()=> Math.random() - 0.5).map((product) => (
-                        <SwiperSlide key={product.id} className="pb-16 mr-2">
-                            <SliderProduct product={product}></SliderProduct>
-                        </SwiperSlide>
-                    ))}
+                    {content}
                 </Swiper>
-                {/* <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
-                    {products.map((product) => (
-                        <SliderProduct product={product}></SliderProduct>
-                    ))}
-                  
 
-                </div> */}
             </div>
         </div>
     );
