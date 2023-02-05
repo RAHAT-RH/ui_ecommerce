@@ -14,7 +14,7 @@ const SliderProduct = ({ product }) => {
 
 
     return (
-        <div className="bg-white group hover:shadow-xl transition ease-in-out delay-150 duration-300">
+        <div className="bg-white group hover:shadow-sm transition">
             <div className="relative h-52 bg-cover  bg-no-repeat bg-center">
                 <img src={product?.main?.original_url} alt="product 1" className="p-3 item-thumbnail w-full h-full object-contain" />
                 <div className="absolute inset-0  flex p-2 justify-between gap-2  transition">

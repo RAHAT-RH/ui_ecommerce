@@ -64,8 +64,8 @@ const Cart = () => {
                             </thead>
                             <tbody className='rounded-none'>
                                 {cart.map((product) => (
-                                    <tr key={product.id} className='border-none'>
-                                        <td className='border-none'>
+                                    <tr key={product.id} className='border-none rounded-none'>
+                                        <td className='border-none rounded-none'>
                                             <div className="flex items-center space-x-3">
                                                 <div className="avatar">
                                                     <div className="mask mask-squircle w-12 h-12">
@@ -78,10 +78,10 @@ const Cart = () => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className='border-none'>
+                                        <td className='border-none rounded-none'>
                                             ${product.offer_price}
                                         </td>
-                                        <td className='border-none'>
+                                        <td className='border-none rounded-none'>
                                             <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
                                                 <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
                                                 onClick={() => {
@@ -103,10 +103,10 @@ const Cart = () => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className='border-none'>
-                                            {(product.quantity) * (product.offer_price)}
+                                        <td className='border-none rounded-none'>
+                                            ${(product.quantity) * (product.offer_price)}
                                         </td>
-                                        <td className='border-none'><button onClick={() => dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: product })} className=' outline-none border-none bg-white btn-sm'><RiDeleteBin6Line className='text-2xl text-red-600 hover:text-red-700' /></button></td>
+                                        <td className='border-none rounded-none'><button onClick={() => dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: product })} className=' outline-none border-none bg-white btn-sm'><RiDeleteBin6Line className='text-2xl text-red-600 hover:text-red-700' /></button></td>
                                     </tr>
                                 ))}
                             </tbody>
