@@ -38,9 +38,9 @@ const Cart = () => {
 
 
 
-    const subTotal = cart.map((product) => {
-        return ((product.quantity) * product.offer_price)
-    })
+    // const subTotal = cart.map((product) => {
+    //     return product.quantity * product.offer_price
+    // })
 
     // console.log(subTotal)
 

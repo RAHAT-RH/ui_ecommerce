@@ -39,7 +39,7 @@ const TrandingProducts = () => {
                 {/* gird system */}
                 <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
                     {
-                        products.sort(()=> Math.random() - 0.7).map((product) => (
+                        products.slice(0, 15).map((product) => (
                             <SliderProduct key={product.id} product={product}></SliderProduct>
                     ))}
                 </div>
