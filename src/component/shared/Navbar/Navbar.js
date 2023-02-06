@@ -24,15 +24,7 @@ const Navbar = ({ children }) => {
         content = <h1>Something went wrong</h1>
     }
 
-    // if (!loading && !error && products.length === 0) {
-    //     content = <p>Nothing to show, Product list is empty</p>
-    // }
 
-    // if (!loading && !error && products.length) {
-    //     content = products.sort(() => Math.random() - 0.6).map((product) => (
-    //         <SliderProduct product={product}></SliderProduct>
-    //     ))
-    // }
 
 
     
