@@ -18,6 +18,8 @@ import SingleProduct from './component/pages/SingleProduct/SingleProduct';
 import Navbar from './component/shared/Navbar/Navbar';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Profile from './component/pages/Profile/Profile';
+import Products from './component/pages/Products/Products';
+import ShopProducts from './component/pages/ShopProducts/ShopProducts';
 
 function App() {
 
@@ -33,7 +35,9 @@ function App() {
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/cart' element={<Cart></Cart>}></Route>
             <Route path='/shop' element={<Shop></Shop>}></Route>
+            <Route path='/products' element={<Products></Products>}></Route>
             <Route path='/single-product/:id' element={<SingleProduct></SingleProduct>}></Route>
+            <Route path='/shop-products/:shopId/:shopName' element={<ShopProducts></ShopProducts>}></Route>
             <Route path='/checkout' element={
               <RequireAuth><Checkout></Checkout></RequireAuth>
             }></Route>

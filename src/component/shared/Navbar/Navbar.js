@@ -13,7 +13,7 @@ const Navbar = ({ children }) => {
     const token = localStorage.getItem('token');
 
     const { state: { cart }, loading, error } = useProducts();
-    
+
     // console.log("ki ase:", cart)
     let content;
 
@@ -27,11 +27,11 @@ const Navbar = ({ children }) => {
 
 
 
-    
-    
- 
 
-    
+
+
+
+
 
     const logOut = () => {
         fetch("https://wehatbazar.thecell.tech/api/logout", {
@@ -70,7 +70,7 @@ const Navbar = ({ children }) => {
                                     <RiShoppingCart2Line />
                                 </div>
 
-                                <div className="absolute left-4 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">{cart.length} {content}</div>
+                                <div className="absolute left-4 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">{cart?.length} {content}</div>
                             </Link>
                             <Link to="/sign-up" className="text-center text-gray-700 hover:text-primary transition relative">
                                 <div className="text-2xl">
@@ -90,6 +90,7 @@ const Navbar = ({ children }) => {
                             <div className="flex items-center space-x-6 capitalize">
                                 <Link to="/" className="text-gray-200 hover:text-white transition">Home</Link>
                                 <Link to="/shop" className="text-gray-200 hover:text-white transition">Shop</Link>
+                                <Link to="/products" className="text-gray-200 hover:text-white transition">Products</Link>
                                 {/* <Link to="#" className="text-gray-200 hover:text-white transition">About us</Link>
                             <Link to="#" className="text-gray-200 hover:text-white transition">Contact us</Link> */}
                             </div>

@@ -1,16 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import NewArrival from '../Home/NewArrival';
 import TrandingProducts from '../Home/TrandingProducts';
 import { RiFacebookFill, RiInstagramLine, RiTwitterLine, RiShoppingBagFill } from "react-icons/ri";
-import { Cartcontext } from '../../Context/Context';
 import { toast, Toaster } from 'react-hot-toast';
 import ReactImageMagnify from 'react-image-magnify';
 import './custom.css'
 const SingleProduct = () => {
-    const Globalstate = useContext(Cartcontext);
-    const dispatch = Globalstate.dispatch;
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     const [productDetails, setProductDetails] = useState({});
     const { id } = useParams()
     useEffect(() => {
@@ -30,7 +27,6 @@ const SingleProduct = () => {
 
 
     const redirectToCart = () => {
-        dispatch({ type: 'ADD', payload: productDetails })
         navigate("/cart")
         toast.success('Added to cart')
     }

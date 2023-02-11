@@ -1,20 +1,12 @@
 import { actionTypes } from "./actionTypes";
 
-const getLocalStorage = () => {
-    let localStorageToCart = localStorage.getItem("cart");
-    if (localStorageToCart === []) {
-        return [];
-    } else {
-        return JSON.parse(localStorageToCart)
-    }
-    // const localStorageCart = JSON.parse(localStorageToCart)
-};
+
 
 export const initialState = {
     loading: false,
     products: [],
     error: false,
-    cart: getLocalStorage()
+    cart: []
 };
 
 

@@ -41,7 +41,7 @@ const SliderProduct = ({ product }) => {
             </div>
 
             {
-                cart.some(cartProduct => cartProduct.id === product.id) ? (
+                cart?.some(cartProduct => cartProduct?.id === product?.id) ? (
                     <button onClick={() => dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: product })} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-red-500 to-[#52a3eb] hover:from-[red] hover:to-primary ease-in-out delay-150 duration-300 transition">
                         Remove From Cart
                     </button>

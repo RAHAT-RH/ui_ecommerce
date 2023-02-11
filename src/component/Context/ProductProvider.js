@@ -9,12 +9,16 @@ const PRODUCT_CONTEXT = createContext()
 
 const ProductProvider = ({ children }) => {
 
+    let savedCart = localStorage.getItem("cart");
+    savedCart = savedCart ? JSON.parse(savedCart) : [];
 
-    
-    const [state, dispatch] = useReducer(productReducer, initialState);
+    const [state, dispatch] = useReducer(productReducer, {
+        ...initialState,
+        cart: savedCart
+    });
     console.log("product provider: ", state)
 
- 
+
 
     useEffect(() => {
         dispatch({ type: actionTypes.FETCHING_START })

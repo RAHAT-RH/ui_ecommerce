@@ -1,45 +1,74 @@
-import React, { useEffect, useState } from 'react';
-import NewArrival from '../Home/NewArrival';
-import TrandingProducts from '../Home/TrandingProducts';
-import SliderProduct from '../Home/SliderProduct';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
+
 
 
 const Shop = () => {
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        fetch("https://wehatbazar.thecell.tech/api/product?include=media", {
-            method: "GET",
-            headers: {
-                'content-type': "application/json",
-                'authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then(res => res.json())
-            .then(data => {
-                // console.log(data.data)
-                setProducts(data?.data)
-            })
-    }, [])
+
+    const { data, isLoading } = useQuery("details", () => fetch('https://wehatbazar.thecell.tech/api/shop?include=media', {
+        method: "GET",
+        headers: {
+            'content-type': "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            'authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then((res) => res.json()
+    )
+    )
+
+    const navigate = useNavigate();
+
+    const redirectToShopProducts = (shopId, shopName) => {
+        navigate(`/shop-products/${shopId}/${shopName}`);
+    };
+
+    if (isLoading) {
+        return <h1>Loading...</h1>
+    }
+
+
+    const shopList = data.data
+
+    console.log(shopList)
+
+
+
 
 
     return (
         <div>
-            <div className="container py-24 overflow-hidden">
-                <div className='flex justify-between items-baseline'>
-                    <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">all products</h2>
-                    {/* <button className="btn btn-primary btn-xs">See More</button> */}
-                </div>
-                {/* gird system */}
-                <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
-                {products.sort(()=> Math.random() - 0.7).map((product) => (
-                       <SliderProduct product={product} key={product.id}></SliderProduct>
-                    ))}
-                </div>
-                <div className='text-center py-16'>
-                    <button type="submit" className="btn btn-primary text-center rounded-none">Show More</button>
-                </div>
-                <NewArrival></NewArrival>
-                <TrandingProducts></TrandingProducts>
+            <div className="container py-5">
+                <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-6">
+                    {
+                        shopList.map((shop) => (
+                            <div className="card card-compact rounded-none bg-base-100 shadow-sm">
+                                <figure className='avatar h-56'>
+                                    {shop && shop.banner && shop.banner[0] ? (
+                                    <img className='w-full' src={shop.banner[0].original_url} alt="banner" />
+                                    ) : (
+                                    <Loading></Loading>
+                                    )}
+                                    {/* <img className='w-full' src={shop?.banner[0]?.original_url} alt="banner" /> */}
+                                </figure>
+                                {/* avatar */}
+                                <div className="avatar absolute bottom-16 left-2">
+                                    <div className="w-16 rounded">
+                                        <img src={shop?.profile?.original_url} alt="" />
+                                    </div>
+                                </div>
 
+                                <div className="card-body">
+                                    <span onClick={() => redirectToShopProducts(shop.id, shop.name)} className="card-title justify-between">
+                                        <span>{shop?.name}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        ))
+                    }
+
+                </div>
             </div>
         </div>
     );

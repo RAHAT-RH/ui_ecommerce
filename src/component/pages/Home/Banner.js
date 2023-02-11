@@ -11,7 +11,7 @@ const Banner = () => {
                         Summer Sale <br />on Selected Items
                     </h1>
                     <div className="mt-8 lg:mt-12">
-                        <Link to="/" className="bg-primary border border-primary text-white px-4 py-3 lg:px-8 lg:py-4
+                        <Link to="/" className="bg-primary border border-primary text-white px-4 py-3 lg:px-4 lg:py-2
                     rounded-none hover:bg-[#B872F7] hover:text-white text-xl transition font-normal">Shop Now</Link>
                     </div>
                 </div>
