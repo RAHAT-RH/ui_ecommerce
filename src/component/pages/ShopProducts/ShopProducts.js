@@ -8,7 +8,7 @@ import Loading from '../Loading/Loading';
 const ShopProducts = () => {
     const { shopId, shopName } = useParams()
 
-    const { data, isLoading } = useQuery("details", () => fetch(`https://wehatbazar.thecell.tech/api/product?include=,shop,media&filter[shop_id]=${shopId}`, {
+    const { data, isLoading } = useQuery("shopProducts", () => fetch(`https://wehatbazar.thecell.tech/api/product?include=,shop,media&filter[shop_id]=${shopId}`, {
         method: "GET",
         headers: {
             'content-type': "application/json",
@@ -19,13 +19,13 @@ const ShopProducts = () => {
     )
     )
 
-    let content;
+   
 
     if (isLoading) {
-        content = <Loading></Loading>
+        return <Loading></Loading>
     }
 
-    const products = data.data
+    const products = data?.data
     
 
     return (
@@ -37,15 +37,13 @@ const ShopProducts = () => {
                 </div>
                 {/* gird system */}
                 <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
-                   {content}
+                   
                     {products.map((product) => (
                         <SliderProduct product={product} key={product.id}></SliderProduct>
                     ))}
 
                 </div>
-                <div className='text-center py-16'>
-                    <button type="submit" className="btn btn-primary text-center rounded-none">Show More</button>
-                </div>
+               
 
             </div>
         </div>

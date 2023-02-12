@@ -25,7 +25,7 @@ const Shop = () => {
     };
 
     if (isLoading) {
-        return <h1>Loading...</h1>
+        return <Loading></Loading>
     }
 
 
@@ -34,16 +34,13 @@ const Shop = () => {
     console.log(shopList)
 
 
-
-
-
     return (
         <div>
             <div className="container py-5">
                 <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-6">
                     {
-                        shopList.map((shop) => (
-                            <div className="card card-compact rounded-none bg-base-100 shadow-sm">
+                        shopList.map((shop, index) => (
+                            <div key={index} className="card card-compact rounded-none bg-base-100 shadow-sm">
                                 <figure className='avatar h-56'>
                                     {shop && shop.banner && shop.banner[0] ? (
                                     <img className='w-full' src={shop.banner[0].original_url} alt="banner" />
@@ -60,7 +57,7 @@ const Shop = () => {
                                 </div>
 
                                 <div className="card-body">
-                                    <span onClick={() => redirectToShopProducts(shop.id, shop.name)} className="card-title justify-between">
+                                    <span onClick={() => redirectToShopProducts(shop.id, shop.name)} className="cursor-pointer card-title justify-between">
                                         <span>{shop?.name}</span>
                                     </span>
                                 </div>

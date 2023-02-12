@@ -16,7 +16,7 @@ const Checkout = () => {
     const placeOrder = () => {
 
         const order = {
-            shop_id: 5,
+            shop_id: 2,
             products: cart.map(item => ({ id: item.id, quantity: item.quantity }))
         }
 
