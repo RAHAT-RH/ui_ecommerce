@@ -13,22 +13,22 @@ const OrderHistory = () => {
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-        fetch('https://wehatbazar.thecell.tech/api/user-details', {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "content-type": "application/json",
-                "authorization": `Bearer ${localStorage.getItem('token')}`
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setUser(data);
-            });
-    }, [setUser]);
+    // useEffect(() => {
+    //     fetch('https://wehatbazar.thecell.tech/api/user-details', {
+    //         method: "GET",
+    //         headers: {
+    //             "X-Requested-With": "XMLHttpRequest",
+    //             "content-type": "application/json",
+    //             "authorization": `Bearer ${localStorage.getItem('token')}`
+    //         },
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setUser(data);
+    //         });
+    // }, [setUser]);
 
-    console.log(user)
+    // console.log(user)
 
     const { data, isLoading } = useQuery("history", () => fetch('https://wehatbazar.thecell.tech/api/user/order', {
         method: "GET",

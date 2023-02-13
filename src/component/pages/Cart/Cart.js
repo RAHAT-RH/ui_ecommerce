@@ -32,15 +32,13 @@ const Cart = () => {
         content = <h1>Something went wrong</h1>
     }
     const total = cart.reduce((total, product) => {
-        return (total + product.offer_price * (product.quantity))
+        return (total + (product.offer_price ? product?.offer_price * product?.quantity : product?.price * product.quantity))
     }, 0)
 
 
 
 
-    // const subTotal = cart.map((product) => {
-    //     return product.quantity * product.offer_price
-    // })
+   
 
     // console.log(subTotal)
 
@@ -79,7 +77,7 @@ const Cart = () => {
                                             </div>
                                         </td>
                                         <td className='border-none rounded-none'>
-                                            ${product.offer_price}
+                                            ${product?.offer_price ? product?.offer_price : product?.price}
                                         </td>
                                         <td className='border-none rounded-none'>
                                             <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
@@ -104,7 +102,7 @@ const Cart = () => {
                                             </div>
                                         </td>
                                         <td className='border-none rounded-none'>
-                                            ${(product.quantity) * (product.offer_price)}
+                                            ${product?.offer ? product?.offer_price * product?.quantity : product?.price * product?.quantity}
                                         </td>
                                         <td className='border-none rounded-none'><button onClick={() => dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: product })} className=' outline-none border-none bg-white btn-sm'><RiDeleteBin6Line className='text-2xl text-red-600 hover:text-red-700' /></button></td>
                                     </tr>
