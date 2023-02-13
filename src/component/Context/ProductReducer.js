@@ -45,6 +45,11 @@ export const productReducer = (state, action) => {
                 ...state,
                 cart: state.cart.filter(product => product.id !== action.payload.id),
             };
+        case actionTypes.CLEAR_CART:
+            return {
+                ...state,
+                cart: [],
+            };
         case actionTypes.INCREASE:
             const increase = state.cart.map((product) => {
                 if (product.id === action.payload.id) {

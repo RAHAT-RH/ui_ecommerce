@@ -1,20 +1,121 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
+
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import { actionTypes } from '../../Context/actionTypes';
 import { useProducts } from '../../Context/ProductProvider';
+
 const Checkout = () => {
     const navigate = useNavigate();
-    const { state: { cart } } = useProducts();
+    const { state: { cart }, dispatch } = useProducts();
     const total = cart.reduce((total, product) => {
         return (total + product.offer_price * (product.quantity))
     }, 0)
 
-    // console.log("cart: ", state)
-    // const data = state.map(())
+
+    // Division Field
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [divisionData, setDivisionData] = useState([]);
+    const [filteredDivisionData, setFilteredDivisionData] = useState([]);
+    const [selectedId, setSelectedId] = useState(null);
+
+    console.log(searchTerm)
+
+    useEffect(() => {
+        fetch("https://wehatbazar.thecell.tech/api/division", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                'content-type': "application/json",
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => setDivisionData(res.data))
+            .catch(error => console.error(error));
+    }, []);
+
+    const handleSearchDivision = event => {
+        setSearchTerm(event.target.value);
+        const filteredDivisionData = divisionData.filter(item =>
+            item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredDivisionData(filteredDivisionData);
+
+    };
+
+    // end division
+
+
+    // start district
+    const [searchTermDistrict, setSearchTermDistrict] = useState("");
+    const [districtData, setDistrictData] = useState([]);
+    const [filteredDistrictData, setFilteredDistrictData] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState(null);
+
+    console.log(searchTermDistrict)
+
+    useEffect(() => {
+        fetch("https://wehatbazar.thecell.tech/api/district", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                'content-type': "application/json",
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => setDistrictData(res.data))
+            .catch(error => console.error(error));
+    }, []);
+
+    const handleSearchDistrict = event => {
+        setSearchTermDistrict(event.target.value);
+        const filteredDistrictData = districtData.filter(item =>
+            item.name.toLowerCase().includes(searchTermDistrict.toLowerCase())
+        );
+        setFilteredDistrictData(filteredDistrictData);
+    };
+
+    // end district
+
+    // start upazila
+    const [searchTermUpazila, setSearchTermUpazila] = useState("");
+    const [upazilaData, setUpazilaData] = useState([]);
+    const [filteredUpazilaData, setFilteredUpazilaData] = useState([]);
+    const [selectedUpazila, setSelectedUpazila] = useState(null);
+
+    console.log(searchTermDistrict)
+
+    useEffect(() => {
+        fetch("https://wehatbazar.thecell.tech/api/upazila", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                'content-type': "application/json",
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => setUpazilaData(res.data))
+            .catch(error => console.error(error));
+    }, []);
+
+    const handleSearchUpazila = event => {
+        setSearchTermUpazila(event.target.value);
+        const filteredUpazilaData = upazilaData.filter(item =>
+            item.name.toLowerCase().includes(searchTermUpazila.toLowerCase())
+        );
+        setFilteredUpazilaData(filteredUpazilaData);
+    };
+
+    // end upazila
+
+    console.log(searchTerm, searchTermUpazila, searchTermDistrict)
 
     const placeOrder = () => {
-
         const order = {
             shop_id: 2,
             products: cart.map(item => ({ id: item.id, quantity: item.quantity }))
@@ -48,16 +149,15 @@ const Checkout = () => {
                             navigate('/')
                         }
                     });
+                    localStorage.removeItem('phone');
+                    dispatch({ type: actionTypes.CLEAR_CART });
 
-
-                    localStorage.removeItem('phone')
                 } else {
                     toast.error(data.message);
 
                 }
             })
     }
-
 
     return (
         <div>
@@ -72,55 +172,132 @@ const Checkout = () => {
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="form-group mb-6">
-                                    <label htmlFor="email" className="text-[#0364BE] mb-2 block">Email address</label>
-                                    <input type="email" name="email" id="email"
+                                    <input type="text" name="division" id="email"
                                         className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                        placeholder="youremail.@gmail.com" />
+                                        placeholder="Name" />
                                 </div>
+
                                 <div className="form-group mb-6">
-                                    <label htmlFor="email" className="text-[#0364BE] mb-2 block">Email address</label>
-                                    <input type="email" name="email" id="email"
+
+                                    <input type="text" name="division" id="email"
                                         className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                        placeholder="youremail.@gmail.com" />
+                                        placeholder="phone" />
+                                    {/* <div>
+
+                                        <ul className="dropdown-content menu p-2 bg-base-100 w-52 absolute ">
+                                            {filteredDistrictData.map(item => (
+                                                <li key={item.id} style={{ display: selectedDistrict === filteredDistrictData ? 'none' : 'block' }}>
+                                                    <button onClick={() => {
+                                                        setSearchTermDistrict(item.name);
+                                                        setSelectedDistrict(filteredDistrictData);
+                                                    }}>{item.name}</button>
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                    </div> */}
                                 </div>
                             </div>
                             <div className="form-group mb-6">
 
-                                <input type="email" name="email" id="email"
+                                <input type="text" name="division" id="email" 
                                     className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                    placeholder="youremail.@gmail.com" />
+                                    placeholder="Address Line 1" />
+                               
                             </div>
                             <div className="form-group mb-6">
 
-                                <input type="email" name="email" id="email"
+                                <input type="text" name="address" id="address"
                                     className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                    placeholder="youremail.@gmail.com" />
+                                    placeholder="Address line 2" />
+                            </div>
+                            <div className="form-group mb-6">
+
+                                <input type="text" name="address" id="address"
+                                    value={searchTerm} onChange={handleSearchDivision}
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="Division" />
+                                <div>
+
+                                    <ul className="dropdown-content menu  bg-base-100 w-full">
+
+                                        {filteredDivisionData.map(item => (
+                                            <li key={item.id} style={{ display: selectedId === filteredDivisionData ? 'none' : 'block' }}>
+                                                <button onClick={() => {
+                                                    setSearchTerm(item.name);
+                                                    setSelectedId(filteredDivisionData);
+                                                }}>{item.name}</button>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div className="form-group mb-6">
+
+                                <input type="text" name="address" id="address"
+                                    value={searchTermDistrict} onChange={handleSearchDistrict}
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="District" />
+                                <div>
+
+                                    <ul className="dropdown-content menu p-2 bg-base-100 w-52 absolute ">
+                                        {filteredDistrictData.map(item => (
+                                            <li key={item.id} style={{ display: selectedDistrict === filteredDistrictData ? 'none' : 'block' }}>
+                                                <button onClick={() => {
+                                                    setSearchTermDistrict(item.name);
+                                                    setSelectedDistrict(filteredDistrictData);
+                                                }}>{item.name}</button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="form-group mb-6">
+
+                                <input type="text" name="address" id="address"
+                                    value={searchTermUpazila} onChange={handleSearchUpazila}
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="Sbu District" />
+                                    <div>
+
+                                        <ul className="dropdown-content menu bg-base-100 w-52 absolute ">
+                                            {filteredUpazilaData.map(item => (
+                                                <li key={item.id} style={{ display: selectedUpazila === filteredUpazilaData ? 'none' : 'block' }}>
+                                                    <p className='cursor-pointer active:bg-white' onClick={() => {
+                                                        setSearchTermUpazila(item.name);
+                                                        setSelectedUpazila(filteredUpazilaData);
+                                                    }}>{item.name}</p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>  
                             </div>
 
-                            <div className="flex justify-between py-3">
+                            {/* <div className="flex justify-between py-3">
                                 <h4 className="text-black">Billing Information</h4>
                                 <span className='text-primary '><input type="checkbox" className="bg-white outline-none" name="same" value='same' id="" /> Same as shipping details</span>
-                            </div>
+                            </div> */}
 
-                            <div className="form-group mb-6">
+                            {/* <div className="form-group mb-6">
 
-                                <input type="email" name="email" id="email"
+                                <input type="text" name="address" id="email"
                                     className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                    placeholder="youremail.@gmail.com" />
-                            </div>
-                            <div className="form-group mb-6">
-
-                                <input type="email" name="email" id="email"
-                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                    placeholder="youremail.@gmail.com" />
+                                    placeholder="Address 1..." />
                             </div>
                             <div className="form-group mb-6">
 
                                 <input type="email" name="email" id="email"
                                     className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                                    placeholder="youremail.@gmail.com" />
+                                    placeholder="Address 2..." />
                             </div>
+                            <div className="form-group mb-6">
 
+                                <textarea type="email" name="email" id="email"
+                                    className="block w-full border bg-white border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                                    placeholder="Address 3..." />
+                            </div>
+ */}
 
                         </div>
                         {/* </div> */}

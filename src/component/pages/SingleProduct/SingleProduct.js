@@ -11,7 +11,7 @@ const SingleProduct = () => {
     const [productDetails, setProductDetails] = useState({});
     const { id } = useParams()
     useEffect(() => {
-        fetch(`https://wehatbazar.thecell.tech/api/product/${id}?include=category`, {
+        fetch(`https://wehatbazar.thecell.tech/api/product/${id}?include=shop`, {
             method: "GET",
             headers: {
                 'content-type': "application/json",
@@ -33,6 +33,7 @@ const SingleProduct = () => {
 
 
     const { name, offer_price, price, status } = productDetails;
+    console.log(productDetails)
     return (
         <div>
             <div className="container shadow-xl my-16 grid lg:grid-cols-2 sm:grid-cols-1 py-16 bg-white gap-6">

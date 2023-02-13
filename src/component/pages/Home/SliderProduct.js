@@ -35,8 +35,8 @@ const SliderProduct = ({ product }) => {
                     <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">{product?.name}</h4>
                 </button>
                 <div className="flex items-baseline mb-1 space-x-2">
-                    <p className="text-xl text-primary font-semibold">${product?.offer_price}</p>
-                    <p className="text-sm text-gray-400 line-through">${product?.price}</p>
+                    <p className="text-xl text-primary font-semibold">${product?.offer_price ? product?.offer_price : product?.price}</p>
+                    <p className="text-sm text-gray-400 line-through">{product?.offer_price ? "$" + product?.price : ""}</p>
                 </div>
             </div>
 

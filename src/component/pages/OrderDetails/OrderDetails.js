@@ -74,7 +74,7 @@ const OrderDetails = () => {
                                                 {item.quantity}
                                             </td>
                                             <td className='border-none'>
-                                                $49
+                                            {item.quantity * item.price}
                                             </td>
                                             <td className='border-none'>
                                                 <div class="badge badge-sm rounded-none bg-[green]">{details.order_status}</div>

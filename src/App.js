@@ -61,8 +61,6 @@ function App() {
 
         </Navbar>
       </QueryClientProvider>
-
-
     </div>
   );
 }

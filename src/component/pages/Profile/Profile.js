@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-
 const Profile = () => {
+
     const { data, isLoading } = useQuery("userDetails", () => (fetch('https://wehatbazar.thecell.tech/api/user-details', {
         method: "GET",
         headers: {
@@ -14,7 +14,11 @@ const Profile = () => {
     if (isLoading) {
         return <h1>Loading...</h1>
     }
-    console.log(data)
+
+    localStorage.setItem("user_id", data?.data?.id)
+
+    
+
     return (
         <div className='py-20'>
             <div className='container flex items-center justify-center'>
@@ -26,6 +30,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            
         </div>
     );
 };

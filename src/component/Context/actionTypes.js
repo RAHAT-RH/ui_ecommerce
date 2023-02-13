@@ -5,5 +5,6 @@ export const actionTypes = {
     ADD_TO_CARD: "ADD_TO_CARD",
     REMOVE_FROM_CART: "REMOVE_FROM_CART",
     INCREASE: "INCREASE",
-    DECREASE: "DECREASE"
+    DECREASE: "DECREASE",
+    CLEAR_CART: "CLEAR_CART"
 };

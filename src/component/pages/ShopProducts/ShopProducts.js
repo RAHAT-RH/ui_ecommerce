@@ -8,7 +8,7 @@ import Loading from '../Loading/Loading';
 const ShopProducts = () => {
     const { shopId, shopName } = useParams()
 
-    const { data, isLoading } = useQuery("shopProducts", () => fetch(`https://wehatbazar.thecell.tech/api/product?include=,shop,media&filter[shop_id]=${shopId}`, {
+    const { data, isLoading } = useQuery("shopProducts", () => fetch(`https://wehatbazar.thecell.tech/api/product?include=shop,media&filter[shop_id]=${shopId}`, {
         method: "GET",
         headers: {
             'content-type': "application/json",
@@ -25,7 +25,10 @@ const ShopProducts = () => {
         return <Loading></Loading>
     }
 
-    const products = data?.data
+    const latestProducts = data?.data
+
+    const products = latestProducts.map(product => ({ ...product, quantity: 1 }))
+    console.log(products)
     
 
     return (

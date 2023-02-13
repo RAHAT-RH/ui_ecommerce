@@ -1,15 +1,34 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
-import NewArrival from '../Home/NewArrival';
 
 
 
 const OrderHistory = () => {
-    // const [history, setHistory] = useState([]);
+    const [user, setUser] = useState({});
+
     const navigate = useNavigate();
 
+
+    useEffect(() => {
+        fetch('https://wehatbazar.thecell.tech/api/user-details', {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "content-type": "application/json",
+                "authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setUser(data);
+            });
+    }, [setUser]);
+
+    console.log(user)
 
     const { data, isLoading } = useQuery("history", () => fetch('https://wehatbazar.thecell.tech/api/user/order', {
         method: "GET",
@@ -28,6 +47,11 @@ const OrderHistory = () => {
 
     const history = data.data
 
+    console.log(history)
+
+    const filteredHistory = Array.isArray ? history.filter(historyItem => user && user?.id === historyItem?.user_id) : [];
+
+    console.log(filteredHistory)
     return (
         <div className='py-16'>
             <h1 className='text-center font-bold lg:text-4xl sm:text-2xl pb-8'>Order History</h1>
@@ -48,37 +72,32 @@ const OrderHistory = () => {
                         </thead>
                         <tbody>
 
-                            
-                                {Array.isArray(history) ? history.map((historyItem) => (
-                                    <tr key={historyItem?.id}>
-                                        <td>{historyItem?.id}</td>
-                                        <td>{new Date(historyItem?.created_at).toLocaleDateString()}</td>
-                                        <td>Mirpur, Dhaka</td>
-                                        <td>
-                                            <span className="badge bg-[#FB767D] rounded-none border-none">{historyItem?.order_status}</span>
-                                        </td>
-                                        <td>
-                                            ${historyItem?.total}
-                                        </td>
-                                        <td>
-                                            <button
-                                                onClick={() => {
-                                                    navigate(`/order-details/${historyItem?.id}`);
-                                                    localStorage.setItem("id", historyItem?.id)
-                                                   
-                                                }} className="btn btn-sm bg-primary rounded-none">View</button>
-                                        </td>
 
-                                    </tr>
-                                )) : null}
+                            {filteredHistory.map((historyItem) => (
+                                <tr key={historyItem?.id}>
+                                    <td>{historyItem?.id}</td>
+                                    <td>{new Date(historyItem?.created_at).toLocaleDateString()}</td>
+                                    <td>Mirpur, Dhaka</td>
+                                    <td>
+                                        <span className="badge bg-[#FB767D] rounded-none border-none">{historyItem?.order_status}</span>
+                                    </td>
+                                    <td>
+                                        ${historyItem?.total}
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() => {
+                                                navigate(`/order-details/${historyItem?.id}`);
+                                                localStorage.setItem("id", historyItem?.id)
+
+                                            }} className="btn btn-sm bg-primary rounded-none">View</button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
-
             </div>
-
-            <NewArrival></NewArrival>
-
 
         </div>
     );

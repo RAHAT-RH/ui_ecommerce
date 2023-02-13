@@ -2,29 +2,34 @@ import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
-// import "swiper/css/pagination";
 import SliderProduct from './SliderProduct';
-import { useProducts } from '../../Context/ProductProvider';
 import Loading from '../Loading/Loading';
+import { useQuery } from 'react-query';
 
 const NewArrival = () => {
 
-    const { state: { products, loading, error } } = useProducts();
+    const { data, isLoading } = useQuery("latestProducts", () => fetch('https://wehatbazar.thecell.tech/api/latest-product?include=media', {
+        method: "GET",
+        headers: {
+            'content-type': "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            'authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then((res) => res.json()
+    )
+    )
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     let content;
+    const latestProducts = data?.data
 
-    if (loading) {
-        content = <Loading></Loading>
-    }
-    if (error) {
-        content = <h1>Something went wrong</h1>
-    }
+    const products = latestProducts.map(product => ({ ...product, quantity: 1 }))
+    console.log(products)
 
-    if (!loading && !error && products.length === 0) {
-        content = <p>Nothing to show, Product list is empty</p>
-    }
-
-    if (!loading && !error && products.length) {
+    if (!isLoading && products.length) {
         content = products.map((product) => (
             <SwiperSlide key={product.id} className="pb-16 mr-2">
                 <SliderProduct key={product.id} product={product}></SliderProduct>
@@ -36,7 +41,7 @@ const NewArrival = () => {
         <div>
             <div className="container pb-10 overflow-hidden">
                 <div className='flex justify-between items-baseline'>
-                    <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">top new arrival</h2>
+                    <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">Latest Products</h2>
                     <button className="btn btn-primary btn-xs">See More</button>
                 </div>
                 {/* gird system */}

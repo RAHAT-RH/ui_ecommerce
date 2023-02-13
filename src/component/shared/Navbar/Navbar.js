@@ -53,6 +53,7 @@ const Navbar = ({ children }) => {
                     console.log(data)
                 }
             })
+            localStorage.removeItem('token')
     }
     return (
         <div>
