@@ -6,8 +6,11 @@ import { RiFacebookFill, RiInstagramLine, RiTwitterLine, RiShoppingBagFill } fro
 import { toast, Toaster } from 'react-hot-toast';
 import ReactImageMagnify from 'react-image-magnify';
 import './custom.css'
+import { useProducts } from '../../Context/ProductProvider';
+import { actionTypes } from '../../Context/actionTypes';
 const SingleProduct = () => {
     const navigate = useNavigate()
+    const { state: { cart, loading, error }, dispatch } = useProducts();
     const [productDetails, setProductDetails] = useState({});
     const { id } = useParams()
     useEffect(() => {
@@ -27,12 +30,40 @@ const SingleProduct = () => {
 
 
     const redirectToCart = () => {
+        dispatch({ type: actionTypes.ADD_TO_CARD, payload: productDetails })
         navigate("/cart")
-        toast.success('Added to cart')
+        toast.success('added cart.', {
+            style: {
+                // border: '1px solid #713200',
+                padding: '10px',
+                color: '#713200',
+            },
+            iconTheme: {
+                primary: '#713200',
+                secondary: '#FFFAEE',
+            },
+        });
+    }
+    const removeToCart = () => {
+        dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: productDetails })
+
+        toast.success('Remove from cart.', {
+            style: {
+                border: '1px solid #713200',
+                padding: '10px',
+                color: '#713200',
+            },
+            iconTheme: {
+                primary: '#713200',
+                secondary: '#FFFAEE',
+            },
+        });
     }
 
-
-    const { name, offer_price, price, status } = productDetails;
+    console.log(productDetails)
+    productDetails.quantity = 1
+    console.log("new product quantity:", productDetails)
+    const { name, offer_price, price, status, shop } = productDetails;
     console.log(productDetails)
     return (
         <div>
@@ -72,21 +103,21 @@ const SingleProduct = () => {
                             <span className="text-green-600">{status}</span>
                         </p>
                         <p className="space-x-2">
-                            <span className="text-gray-800 font-semibold">Brand: </span>
-                            <span className="text-gray-600">Apex</span>
+                            <span className="text-gray-800 font-semibold">Shop: </span>
+                            <span className="text-gray-600">{shop?.name}</span>
                         </p>
-                        <p className="space-x-2">
+                        {/* <p className="space-x-2">
                             <span className="text-gray-800 font-semibold">Category: </span>
                             <span className="text-gray-600">Sofa</span>
-                        </p>
+                        </p> */}
                         <p className="space-x-2">
                             <span className="text-gray-800 font-semibold">SKU: </span>
                             <span className="text-gray-600">BE45VGRT</span>
                         </p>
                     </div>
                     <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-                        <p className="text-xl text-primary font-semibold">${offer_price}.00</p>
-                        <p className="text-base text-gray-400 line-through">${price}.00</p>
+                        <p className="text-xl text-primary font-semibold"><span className='text-[20px] font-bold'>৳</span>{offer_price}.00</p>
+                        <p className="text-base text-gray-400 line-through"><span className='text-[15px] font-bold'>৳</span>{price}.00</p>
                     </div>
 
                     <p className="mt-4 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius eum
@@ -150,9 +181,21 @@ const SingleProduct = () => {
 
 
                     <div className="mt-6 gap-3 border-b border-gray-200 pb-5 pt-12">
-                        <button onClick={redirectToCart} className="rounded-none border border-primary text-white px-8 py-4 text-center font-medium uppercase flex items-center justify-center bg-gradient-to-l from-primary to-[#52a3eb] gap-2 hover:from-[#52a3eb] hover:to-primary transition">
+                        {/* <button onClick={redirectToCart} className="rounded-none border border-primary text-white px-8 py-4 text-center font-medium uppercase flex items-center justify-center bg-gradient-to-l from-primary to-[#52a3eb] gap-2 hover:from-[#52a3eb] hover:to-primary transition">
                             <RiShoppingBagFill /> Add to cart
-                        </button>
+                        </button> */}
+                        {
+                            cart?.some(cartProduct => cartProduct?.id === productDetails?.id) ? (
+                                <button onClick={removeToCart} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-red-500 to-[#52a3eb] hover:from-[red] hover:to-primary ease-in-out delay-150 duration-300 transition">
+                                     Remove From Cart
+                                </button>
+                            ) : (
+                                <button onClick={redirectToCart} className="block w-full mt-4 py-2 text-center text-white bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition">
+                                    Add To Cart
+                                </button>
+                            )
+                        }
+
                     </div>
 
                     <div className="flex gap-3 mt-4">
@@ -170,7 +213,7 @@ const SingleProduct = () => {
             </div>
             <NewArrival></NewArrival>
             <TrandingProducts></TrandingProducts>
-            <Toaster />
+           
         </div>
     );
 };

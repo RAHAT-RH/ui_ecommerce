@@ -35,6 +35,7 @@ const OtpVerify = ({ data }) => {
                     toast.success("Successfully Login");
                     setToken(data.data.access_token)
                     localStorage.removeItem('phone')
+                    console.log(data)
                 } else {
                     toast.error(data.message);
                     console.log(data)

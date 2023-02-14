@@ -68,13 +68,13 @@ const OrderDetails = () => {
                                                 </div>
                                             </td>
                                             <td className='border-none'>
-                                                ${item.price}
+                                            <span className='text-[25px] font-bold'>৳</span>{item.price}
                                             </td>
                                             <td className='border-none'>
                                                 {item.quantity}
                                             </td>
                                             <td className='border-none'>
-                                            {item.quantity * item.price}
+                                            <span className='text-[25px] font-bold'>৳</span>{item.quantity * item.price}
                                             </td>
                                             <td className='border-none'>
                                                 <div class="badge badge-sm rounded-none bg-[green]">{details.order_status}</div>
@@ -128,7 +128,7 @@ const OrderDetails = () => {
                                 <div className='divide-y divide-slate-200'>
                                     <div className="flex items-center py-4 justify-between">
                                         <p>Sub Total</p>
-                                        <p>${details.total}.00</p>
+                                        <p><span className='text-[25px] font-bold'>৳</span>{details.total}.00</p>
                                     </div>
                                     <div className="flex items-center py-4 justify-between">
                                         <p>Shipping</p>
@@ -136,7 +136,7 @@ const OrderDetails = () => {
                                     </div>
                                     <div className="flex items-center py-4 justify-between">
                                         <p className='font-bold'>Paid Total</p>
-                                        <p className='font-bold'>${details?.total}</p>
+                                        <p className='font-bold'><span className='text-[15px] font-[800]'>৳</span> {details?.total}</p>
                                     </div>
                                 </div>
 

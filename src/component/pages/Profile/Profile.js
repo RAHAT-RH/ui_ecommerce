@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 const Profile = () => {
 
-    const { data, isLoading } = useQuery("userDetails", () => (fetch('https://wehatbazar.thecell.tech/api/user-details', {
+    const { data, isLoading, refetch } = useQuery("userDetails", () => (fetch('https://wehatbazar.thecell.tech/api/user-details', {
         method: "GET",
         headers: {
             "X-Requested-With": "XMLHttpRequest",
@@ -15,7 +15,10 @@ const Profile = () => {
         return <h1>Loading...</h1>
     }
 
-    localStorage.setItem("user_id", data?.data?.id)
+    if (data?.data) {
+        refetch(localStorage.setItem("user_id", data?.data?.id))
+    }
+    
 
     
 

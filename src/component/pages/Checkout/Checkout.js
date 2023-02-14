@@ -325,7 +325,7 @@ const Checkout = () => {
                                             <th>{index + 1}</th>
                                             <td>{product.name}</td>
                                             <td>{product.quantity}</td>
-                                            <td>{product.quantity * product.offer_price}</td>
+                                            <td><span className='text-[25px] font-bold'>৳</span>{product.quantity * product.offer_price}</td>
                                         </tr>
                                     ))}
 
@@ -339,7 +339,7 @@ const Checkout = () => {
 
                         <div className="flex  justify-between text-gray-800 font-medium py-3 uppercase">
                             <p className="font-semibold">Total</p>
-                            <p>${total}</p>
+                            <p><span className='text-[25px] font-bold'>৳</span>{total}</p>
                         </div>
                     </div>
 

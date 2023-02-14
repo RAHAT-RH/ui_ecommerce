@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import NewArrival from '../Home/NewArrival';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useProducts } from '../../Context/ProductProvider';
@@ -8,20 +7,16 @@ import Loading from '../Loading/Loading';
 import { actionTypes } from '../../Context/actionTypes';
 
 
-const Cart = () => {
-    // const Globalstate = useContext(Cartcontext);
-    // const state = Globalstate.state;
-    // const dispatch = Globalstate.dispatch
-    // // console.log(state)
 
-    // const [cart, setCart] = useState([])
+const Cart = () => {
+
     const navigate = useNavigate();
 
     const reDriectToCheckOut = () => {
         navigate('/checkout')
     }
 
-    const {  state: {cart, loading, error}, dispatch  } = useProducts();
+    const { state: { cart, loading, error }, dispatch } = useProducts();
 
     let content;
 
@@ -35,11 +30,6 @@ const Cart = () => {
         return (total + (product.offer_price ? product?.offer_price * product?.quantity : product?.price * product.quantity))
     }, 0)
 
-
-
-
-   
-
     // console.log(subTotal)
 
     return (
@@ -49,7 +39,7 @@ const Cart = () => {
                 <div className='flex  pt-10 flex-col lg:flex-row gap-4'>
                     {/* first part */}
                     <div className="overflow-x-auto w-full rounded-none">
-{content}
+                        {content}
                         <table className="table  w-full rounded-none">
                             <thead className=''>
                                 <tr className='z-0'>
@@ -77,32 +67,32 @@ const Cart = () => {
                                             </div>
                                         </td>
                                         <td className='border-none rounded-none'>
-                                            ${product?.offer_price ? product?.offer_price : product?.price}
+                                        <span className='text-[25px] font-bold'>৳</span>{product?.offer_price ? product?.offer_price : product?.price}
                                         </td>
                                         <td className='border-none rounded-none'>
                                             <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
                                                 <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-                                                onClick={() => {
-                                                    if ((product.quantity) > 1) {
-                                                        dispatch({ type: actionTypes.DECREASE, payload: product });
-                                                    } else {
-                                                        dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: product });
-                                                    }
-                                                }}
+                                                    onClick={() => {
+                                                        if ((product.quantity) > 1) {
+                                                            dispatch({ type: actionTypes.DECREASE, payload: product });
+                                                        } else {
+                                                            dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: product });
+                                                        }
+                                                    }}
                                                 >
                                                     -
                                                 </div>
                                                 <p className="h-8 w-8 text-base flex items-center border-0 outline-none justify-center bg-white p-2">{(product.quantity)}</p>
 
                                                 <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-                                                onClick={() => dispatch({ type: actionTypes.INCREASE, payload: product })} 
+                                                    onClick={() => dispatch({ type: actionTypes.INCREASE, payload: product })}
                                                 >
                                                     +
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className='border-none rounded-none'>
-                                            ${product?.offer ? product?.offer_price * product?.quantity : product?.price * product?.quantity}
+                                        <td className='border-none rounded-none font-'>
+                                            <span className='text-[25px] font-bold'>৳</span> {product?.offer_price ? product?.offer_price * product?.quantity : product?.price * product?.quantity}
                                         </td>
                                         <td className='border-none rounded-none'><button onClick={() => dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: product })} className=' outline-none border-none bg-white btn-sm'><RiDeleteBin6Line className='text-2xl text-red-600 hover:text-red-700' /></button></td>
                                     </tr>
@@ -112,7 +102,7 @@ const Cart = () => {
                     </div>
                     {/* first part end*/}
                     {/* 2nd  part start*/}
-                    <div className="card lg:max-w-md sm:w-full  bg-base-100 rounded-none mb-20">
+                    <div className="card lg:max-w-md sm:w-full lg:max-h-[400px]  bg-base-100 rounded-none mb-20">
                         {cart.length > 0 &&
                             <div className="card-body">
                                 <div className='shadow-md p-5'>
@@ -134,7 +124,7 @@ const Cart = () => {
                                 </div>
                                 <div className="divider"></div>
                                 <div className='flex justify-between'>
-                                    <h5 className='text-[18px] font-[500]'>Total: {total}</h5>
+                                    <h5 className='text-[18px] font-[500]'>Total: <span className='text-[25px] font-bold'>৳</span>{total}</h5>
                                     <span className='text-[18px] font-[500]'></span>
                                 </div>
 

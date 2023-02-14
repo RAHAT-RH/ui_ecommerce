@@ -13,22 +13,26 @@ const OrderHistory = () => {
     const navigate = useNavigate();
 
 
-    // useEffect(() => {
-    //     fetch('https://wehatbazar.thecell.tech/api/user-details', {
-    //         method: "GET",
-    //         headers: {
-    //             "X-Requested-With": "XMLHttpRequest",
-    //             "content-type": "application/json",
-    //             "authorization": `Bearer ${localStorage.getItem('token')}`
-    //         },
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             setUser(data);
-    //         });
-    // }, [setUser]);
+    useEffect(() => {
+        fetch('https://wehatbazar.thecell.tech/api/user-details', {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "content-type": "application/json",
+                "authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setUser(data);
+            });
+    }, []);
 
-    // console.log(user)
+    const userId = user?.data
+    // console.log(userId.id)
+
+    // const userId = localStorage.getItem("user_id");
+    // console.log(userId)
 
     const { data, isLoading } = useQuery("history", () => fetch('https://wehatbazar.thecell.tech/api/user/order', {
         method: "GET",
@@ -45,11 +49,23 @@ const OrderHistory = () => {
         return <h1>Loading...</h1>
     }
 
-    const history = data.data
+    const history = data?.data
+    // console.log(history)
+    // const filteredHistory = history.filter((historyItem) => {
+    //     // Add the condition for filtering here
+    //     // For example, to filter by order status:
 
-    console.log(history)
+    //     return historyItem?.user_id === userId?.id;
+    //   });
 
-    const filteredHistory = Array.isArray ? history.filter(historyItem => user && user?.id === historyItem?.user_id) : [];
+    // console.log(history)
+
+    // const filteredHistory = Array.isArray ? history.filter(historyItem => user && user?.id === historyItem?.user_id) : [];
+    // const filteredHistory = history.filter(historyItem => user && user?.id === historyItem?.user_id);
+    // console.log(Array.isArray)
+    // console.log(filteredHistory)
+
+    const filteredHistory = Array.isArray(history) ? history.filter(historyItem => user && userId?.id === historyItem?.user_id) : [];
 
     console.log(filteredHistory)
     return (
@@ -82,7 +98,7 @@ const OrderHistory = () => {
                                         <span className="badge bg-[#FB767D] rounded-none border-none">{historyItem?.order_status}</span>
                                     </td>
                                     <td>
-                                        ${historyItem?.total}
+                                    <span className='text-[25px] font-bold'>৳</span>{historyItem?.total}
                                     </td>
                                     <td>
                                         <button

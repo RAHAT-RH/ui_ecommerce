@@ -24,15 +24,6 @@ const Navbar = ({ children }) => {
         content = <h1>Something went wrong</h1>
     }
 
-
-
-
-
-
-
-
-
-
     const logOut = () => {
         fetch("https://wehatbazar.thecell.tech/api/logout", {
             method: "POST",
@@ -49,6 +40,7 @@ const Navbar = ({ children }) => {
                     localStorage.removeItem('token')
                     console.log(data)
                     navigate('/')
+                    localStorage.removeItem('user_id')
                 } else {
                     console.log(data)
                 }
