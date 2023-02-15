@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import NewArrival from '../Home/NewArrival';
 import TrandingProducts from '../Home/TrandingProducts';
 import { RiFacebookFill, RiInstagramLine, RiTwitterLine, RiShoppingBagFill } from "react-icons/ri";
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import ReactImageMagnify from 'react-image-magnify';
 import './custom.css'
 import { useProducts } from '../../Context/ProductProvider';
@@ -60,11 +60,11 @@ const SingleProduct = () => {
         });
     }
 
-    console.log(productDetails)
+    // console.log(productDetails)
     productDetails.quantity = 1
-    console.log("new product quantity:", productDetails)
+    // console.log("new product quantity:", productDetails)
     const { name, offer_price, price, status, shop } = productDetails;
-    console.log(productDetails)
+    // console.log(productDetails)
     return (
         <div>
             <div className="container shadow-xl my-16 grid lg:grid-cols-2 sm:grid-cols-1 py-16 bg-white gap-6">

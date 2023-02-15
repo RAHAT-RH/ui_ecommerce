@@ -60,7 +60,7 @@ const SliderProduct = ({ product }) => {
             </div>
             <div className="pt-4 pb-3 px-4">
                 <button onClick={() => redirectToDetails(product.id)} className='link no-underline'>
-                    <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">{product?.name}</h4>
+                    <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition truncate w-52">{product?.name}</h4>
                 </button>
                 <div className="flex items-baseline mb-1 space-x-2">
                     <p className="text-xl text-primary font-semibold"><span className='text-[25px] font-bold'>৳</span>{product?.offer_price ? product?.offer_price : product?.price}</p>

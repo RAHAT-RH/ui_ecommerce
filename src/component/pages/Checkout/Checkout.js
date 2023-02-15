@@ -10,7 +10,7 @@ const Checkout = () => {
     const navigate = useNavigate();
     const { state: { cart }, dispatch } = useProducts();
     const total = cart.reduce((total, product) => {
-        return (total + product.offer_price * (product.quantity))
+        return (total + (product.offer_price ? product?.offer_price : product?.price) * (product?.quantity))
     }, 0)
 
 
@@ -87,7 +87,6 @@ const Checkout = () => {
     const [filteredUpazilaData, setFilteredUpazilaData] = useState([]);
     const [selectedUpazila, setSelectedUpazila] = useState(null);
 
-    console.log(searchTermDistrict)
 
     useEffect(() => {
         fetch("https://wehatbazar.thecell.tech/api/upazila", {
@@ -113,13 +112,14 @@ const Checkout = () => {
 
     // end upazila
 
-    console.log(searchTerm, searchTermUpazila, searchTermDistrict)
-
+    console.log(cart)
     const placeOrder = () => {
         const order = {
             shop_id: 2,
             products: cart.map(item => ({ id: item.id, quantity: item.quantity }))
         }
+
+        console.log(order)
 
         fetch("https://wehatbazar.thecell.tech/api/user/order", {
             method: "POST",
@@ -325,7 +325,7 @@ const Checkout = () => {
                                             <th>{index + 1}</th>
                                             <td>{product.name}</td>
                                             <td>{product.quantity}</td>
-                                            <td><span className='text-[25px] font-bold'>৳</span>{product.quantity * product.offer_price}</td>
+                                            <td><span className='text-[25px] font-bold'>৳</span>{product?.offer_price ? product?.quantity * product?.offer_price : product?.quantity * product?.price}</td>
                                         </tr>
                                     ))}
 
