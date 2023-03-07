@@ -13,7 +13,7 @@ export const initialState = {
 
 export const productReducer = (state, action) => {
     
-    console.log("state of the",state);
+    // console.log("state of the",state);
    
     switch (action.type) {
         case actionTypes.FETCHING_START:

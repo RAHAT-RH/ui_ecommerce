@@ -31,7 +31,7 @@ const Shop = () => {
 
     const shopList = data.data
 
-    console.log(shopList)
+    // console.log(shopList)
 
 
     return (

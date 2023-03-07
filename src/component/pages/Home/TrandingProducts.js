@@ -34,7 +34,7 @@ const TrandingProducts = () => {
             <div className="container pb-10 overflow-hidden">
                 <div className='flex justify-between items-baseline'>
                     <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">all products</h2>
-                    <button className="btn btn-primary btn-xs">See More</button>
+                    <Link to="/products" className="btn btn-primary btn-xs">See More</Link>
                 </div>
                 {/* gird system */}
                 <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-6">
@@ -44,7 +44,7 @@ const TrandingProducts = () => {
                     ))}
                 </div>
                 <div className='text-center py-16'>
-                    <Link to='/shop' className="btn btn-primary text-center rounded-none">Show More</Link>
+                    <Link to='/products' className="btn btn-primary text-center rounded-none">Show More</Link>
                 </div>
             </div>
 

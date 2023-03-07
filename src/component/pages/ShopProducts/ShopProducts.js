@@ -28,7 +28,7 @@ const ShopProducts = () => {
     const latestProducts = data?.data
 
     const products = latestProducts.map(product => ({ ...product, quantity: 1 }))
-    console.log(products)
+    // console.log(products)
     
 
     return (

@@ -86,7 +86,7 @@ const Login = () => {
                                     className="text-primary focus:ring-0 rounded-sm cursor-pointer" /> */}
                                 {/* <label for="remember" className="text-gray-600 ml-3 cursor-pointer">Remember me</label> */}
                             </div>
-                            <Link to="/" className="text-primary">Forget Number</Link>
+                            <Link to="/reset-password" className="text-primary">Forget Number</Link>
                         </div>
                         <div className="mt-4">
                             <button type="submit"

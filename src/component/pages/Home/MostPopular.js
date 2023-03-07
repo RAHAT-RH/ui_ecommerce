@@ -6,6 +6,7 @@ import "swiper/css";
 import SliderProduct from './SliderProduct';
 import { useProducts } from '../../Context/ProductProvider';
 import Loading from '../Loading/Loading';
+import { Link } from 'react-router-dom';
 
 const MostPopular = () => {
     const { state: { products, loading, error } } = useProducts();
@@ -38,7 +39,7 @@ const MostPopular = () => {
             <div className="container pb-10 overflow-hidden">
                 <div className='flex justify-between items-baseline'>
                     <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">Most Popular</h2>
-                    <button className="btn btn-primary btn-xs">See More</button>
+                    <Link to='/products' className="btn btn-primary btn-xs">See More</Link>
                 </div>
                 {/* gird system */}
 

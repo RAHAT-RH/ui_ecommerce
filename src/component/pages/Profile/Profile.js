@@ -1,8 +1,12 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
+import Loading from '../Loading/Loading';
+import { RiPencilLine } from "react-icons/ri";
+import EditProfile from './EditProfile';
 const Profile = () => {
 
-    const { data, isLoading, refetch } = useQuery("userDetails", () => (fetch('https://wehatbazar.thecell.tech/api/user-details', {
+    const { data, isLoading } = useQuery("userDetails", () => (fetch('https://wehatbazar.thecell.tech/api/user-details', {
         method: "GET",
         headers: {
             "X-Requested-With": "XMLHttpRequest",
@@ -12,28 +16,49 @@ const Profile = () => {
     }).then((res) => res.json())
     ))
     if (isLoading) {
-        return <h1>Loading...</h1>
+        return <Loading></Loading>
     }
 
-    if (data?.data) {
-        refetch(localStorage.setItem("user_id", data?.data?.id))
+    const details = data?.data
+    if (details) {
+        (localStorage.setItem("user_id", details?.id))
+        localStorage.setItem("information", JSON.stringify(details))
     }
     
 
-    
+
+
 
     return (
-        <div className='py-20'>
-            <div className='container flex items-center justify-center'>
-                <div className="card w-96 bg-base-100 shadow-sm">
-                    <div className="card-body">
-                        <h2 className="card-title">{data?.data?.name}</h2>
-                        <p><span className='text-bold'>Phone:</span>{data?.data?.phone}</p>
-                        <div className="badge rounded-none badge-sm lg:badge-lg">{data?.data?.status}</div>
+        <div className="contain py-16 ">
+            <div className="max-w-xl bg-white mx-auto shadow px-6 py-9 rounded overflow-hidden">
+                <div className=''>
+                    <div>
+                        <h2 className="text-2xl uppercase font-medium mb-1  text-black">{details?.name}</h2>
+                        <div className='flex justify-between items-baseline flex-col lg:flex-row'>
+                            <p className="text-gray-600 mb- text-sm ">
+                                Dhaka, Bangladesh
+                            </p>
+                            <div className='text-blue-600'>
+                                <p>
+                                    <Link to='/edit-profile' className='text-sm flex justify-between'>
+                                        <span className='text-[20px] pr-2'>
+                                            <RiPencilLine />
+                                        </span>
+                                        <span>
+                                            Edit Profile
+                                        </span>
+                                    </Link>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div className="divider"></div>
+                <p className="font-normal text-gray-700 py-3 dark:text-gray-400">Name : {details?.name}</p>
+                <p className="font-normal text-gray-700 py-3 dark:text-gray-400">Phone: {details?.phone}</p>
             </div>
-            
+       
         </div>
     );
 };

@@ -6,10 +6,7 @@ import { useProducts } from '../../Context/ProductProvider';
 import Loading from '../Loading/Loading';
 import { actionTypes } from '../../Context/actionTypes';
 
-
-
 const Cart = () => {
-
     const navigate = useNavigate();
 
     const reDriectToCheckOut = () => {
@@ -27,10 +24,9 @@ const Cart = () => {
         content = <h1>Something went wrong</h1>
     }
     const total = cart.reduce((total, product) => {
-        return (total + (product.offer_price ? product?.offer_price * product?.quantity : product?.price * product.quantity))
+        return (total + (product.offer_price ? product?.offer_price * product?.quantity : product?.price * product?.quantity))
     }, 0)
 
-    // console.log(subTotal)
 
     return (
         <div className='py-16'>
@@ -62,12 +58,11 @@ const Cart = () => {
                                                 </div>
                                                 <div>
                                                     <div className="font-bold">{product?.name}</div>
-                                                    {/* <div className="text-sm opacity-50">United States</div> */}
                                                 </div>
                                             </div>
                                         </td>
                                         <td className='border-none rounded-none'>
-                                        <span className='text-[25px] font-bold'>৳</span>{product?.offer_price ? product?.offer_price : product?.price}
+                                            <span className='text-[25px] font-bold'>৳</span>{product?.offer_price ? product?.offer_price : product?.price}
                                         </td>
                                         <td className='border-none rounded-none'>
                                             <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
@@ -108,33 +103,21 @@ const Cart = () => {
                                 <div className='shadow-md p-5'>
                                     <p className='font-[500] text-normal'> Have a coupon? <Link className='link text-blue-500' to='/'>Click Here to enter your code</Link></p>
                                 </div>
-                                <div className="divider"></div>
-                                <h4 className='font-[500]'>Shipping:</h4>
+                                {/* <div className="divider"></div> */}
+
                                 <div className="form-control items-start">
-                                    <label className="label cursor-pointer">
-                                        <input type="radio" name="radio-10" className="radio " />
-                                        <span className="label-text pl-2">Flat Rate</span>
-                                    </label>
-                                </div>
-                                <div className="form-control items-start">
-                                    <label className="label cursor-pointer">
-                                        <input type="radio" name="radio-10" className="radio " />
-                                        <span className="label-text pl-2">Free Shipping</span>
-                                    </label>
                                 </div>
                                 <div className="divider"></div>
                                 <div className='flex justify-between'>
                                     <h5 className='text-[18px] font-[500]'>Total: <span className='text-[25px] font-bold'>৳</span>{total}</h5>
                                     <span className='text-[18px] font-[500]'></span>
                                 </div>
-
                             </div>
                         }
                         <div className="block ">
                             <button onClick={reDriectToCheckOut} className="btn w-full btn-primary bg-gradient-to-l from-primary to-[#52a3eb] hover:from-[#52a3eb] hover:to-primary ease-in-out delay-150 duration-300 transition rounded-none border-none">Process to Checkout</button>
                         </div>
                     </div>
-
                     {/* 2nd  part end*/}
                 </div>
                 <NewArrival className='py-16'></NewArrival>

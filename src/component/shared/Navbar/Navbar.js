@@ -54,7 +54,7 @@ const Navbar = ({ children }) => {
                 <header className="py-4  shadow-sm bg-white">
                     <div className="container flex items-center justify-between">
                         <Link to="/">
-                            <img src={logo} className="w-28 lg:w-full" alt="Logo" />
+                            <img src={logo} style={{width: "150px"}} className="lg:w-full" alt="Logo" />
                         </Link>
 
                         <div className="flex items-center space-x-6">
@@ -90,7 +90,7 @@ const Navbar = ({ children }) => {
 
 
                             {
-                                token ? (<div className="dropdown dropdown-end">
+                              token && token ? (<div className="dropdown dropdown-end">
                                     <label tabIndex={0} className="link text-white no-underline flex items-center">
                                         <RiUserSettingsLine />
                                         <span className='pl-1'>Profile</span>
@@ -105,9 +105,9 @@ const Navbar = ({ children }) => {
                                         <li><Link to='/order-history'>Order History</Link></li>
                                         <li><button onClick={logOut}>Logout</button></li>
                                     </ul>
-                                </div>) : <div>
+                                </div>) :( <div>
                                     <Link to="/login" className='text-white'>Login</Link>
-                                </div>
+                                </div>)
                             }
 
                         </div>

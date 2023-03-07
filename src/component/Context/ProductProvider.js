@@ -16,7 +16,7 @@ const ProductProvider = ({ children }) => {
         ...initialState,
         cart: savedCart
     });
-    console.log("product provider: ", state)
+    // console.log("product provider: ", state)
 
 
 

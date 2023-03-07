@@ -18,6 +18,8 @@ const OrderDetails = () => {
     const details = data?.data
     // console.log(details)
 
+    console.log(details)
+
 
 
     return (
@@ -77,40 +79,11 @@ const OrderDetails = () => {
                                             <span className='text-[25px] font-bold'>৳</span>{item.quantity * item.price}
                                             </td>
                                             <td className='border-none'>
-                                                <div class="badge badge-sm rounded-none bg-[green]">{details.order_status}</div>
+                                                <div class="badge badge-sx rounded-none bg-[green]">{details.order_status}</div>
                                             </td>
 
                                         </tr>
                                     )) : (<h4 className='text-xl text-red-500'>Sorry No Data Found</h4>)}
-
-                                    {/* <tr className='border-none'>
-                                        <td className='border-none'>
-                                            <div className="flex items-center space-x-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle w-12 h-12">
-                                                        <img src={product1} alt="Avatar Tailwind CSS Component" />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="font-bold"></div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className='border-none'>
-                                            $45
-                                        </td>
-                                        <td className='border-none'>
-                                            4
-                                        </td>
-                                        <td className='border-none'>
-                                            $49
-                                        </td>
-                                        <td className='border-none'>Delete</td>
-
-                                    </tr> */}
-
-
 
                                 </tbody>
                             </table>
@@ -132,7 +105,7 @@ const OrderDetails = () => {
                                     </div>
                                     <div className="flex items-center py-4 justify-between">
                                         <p>Shipping</p>
-                                        <p className='text-red-500 italic'>Free Shipping</p>
+                                        <p className='text-red-500 italic'>{details.shipping_status}</p>
                                     </div>
                                     <div className="flex items-center py-4 justify-between">
                                         <p className='font-bold'>Paid Total</p>

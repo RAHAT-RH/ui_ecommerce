@@ -5,6 +5,7 @@ import "swiper/css";
 import SliderProduct from './SliderProduct';
 import Loading from '../Loading/Loading';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 
 const NewArrival = () => {
 
@@ -27,7 +28,7 @@ const NewArrival = () => {
     const latestProducts = data?.data
 
     const products = latestProducts.map(product => ({ ...product, quantity: 1 }))
-    console.log(products)
+    // console.log(products)
 
     if (!isLoading && products.length) {
         content = products.map((product) => (
@@ -42,7 +43,7 @@ const NewArrival = () => {
             <div className="container pb-10 overflow-hidden">
                 <div className='flex justify-between items-baseline'>
                     <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">Latest Products</h2>
-                    <button className="btn btn-primary btn-xs">See More</button>
+                    <Link to="/products" className="btn btn-primary btn-xs">See More</Link>
                 </div>
                 {/* gird system */}
 

@@ -29,10 +29,7 @@ const OrderHistory = () => {
     }, []);
 
     const userId = user?.data
-    // console.log(userId.id)
 
-    // const userId = localStorage.getItem("user_id");
-    // console.log(userId)
 
     const { data, isLoading } = useQuery("history", () => fetch('https://wehatbazar.thecell.tech/api/user/order', {
         method: "GET",
@@ -50,20 +47,8 @@ const OrderHistory = () => {
     }
 
     const history = data?.data
-    // console.log(history)
-    // const filteredHistory = history.filter((historyItem) => {
-    //     // Add the condition for filtering here
-    //     // For example, to filter by order status:
-
-    //     return historyItem?.user_id === userId?.id;
-    //   });
-
-    // console.log(history)
-
-    // const filteredHistory = Array.isArray ? history.filter(historyItem => user && user?.id === historyItem?.user_id) : [];
-    // const filteredHistory = history.filter(historyItem => user && user?.id === historyItem?.user_id);
-    // console.log(Array.isArray)
-    // console.log(filteredHistory)
+    console.log(history)
+    
 
     const filteredHistory = Array.isArray(history) ? history.filter(historyItem => user && userId?.id === historyItem?.user_id) : [];
 
